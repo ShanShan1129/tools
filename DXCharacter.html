@@ -3,20 +3,38 @@
 
 <head>
     <meta charset="utf-8">
-    <title>実験場</title>
+    <title>DX3コマ作成🌳</title>
 </head>
 
 <body>
-    <p>なるほどな🌳</p>
+    <h1>🌳なるほどな🌳</h1>
+    <p>
+        いつものキャラシサイトの雑変換です　具体的に言えばキャラクター登録所
+    </p>
     <form name="myform">
-        <input name="title" type="text" value="Hello World1" />
-        <input name="btn" type="button" value="実行" onclick="makeDXCharacter()"/>
+        <input name="URLinput" type="text" class="mybox" value="" placeholder="ここに駒にしたいキャラシのURLをコピペしてくれ(^^)" />
+        <input name="btn" type="button" value="コマ作成・皇" onclick="makeDXCharacter()" />
+
     </form>
-    
+    <form name="resultform">
+        <textarea name="myresult" class="mybox" placeholder="クリップボードへの自動転送うまくいかない場合はここにでたやつをコピペしてくれ(^^)"
+            rows="3"></textarea>
+    </form>
+    <p>
+        CSSの知識ないんでしょっぱい画面です　ゆるしてくれ
+    </p>
 </body>
+<style>
+    .mybox {
+        display: inline-block;
+        width: 100%;
+        max-width: 330px;
+    }
+</style>
+
 <script type="text/javascript">
     makeDXCharacter = function () {
-        var charURLstr = document.forms.myform.title.value;
+        var charURLstr = document.forms.myform.URLinput.value;
         var charURL;
         try {
             charURL = new URL(charURLstr);
@@ -90,13 +108,13 @@
             };
 
             var Text = JSON.stringify(data2);
+            document.forms.resultform.myresult.value = Text;
             navigator.clipboard.writeText(Text)
                 .then(function () {
                     alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)');
                 })
                 .catch(err => {
-                    data2.data.commands = "";
-                    window.prompt('ボックス内の文字をコピペしてココフォリア盤面に張り付けてくれ(^^)', JSON.stringify(data2));
+                    alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
                 });
         };
         document.body.appendChild(s);
