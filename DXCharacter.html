@@ -12,13 +12,13 @@
         いつものキャラシサイトの雑変換だ<br>飲んでくれ！<br>具体的に言えばキャラクター登録所
     </p>
     <form name="myform">
-        <input name="URLinput" type="text" class="mybox" value="" placeholder="ここに駒にしたいキャラシのURLをコピペしてくれ(^^)" />
+        <input name="URLinput" type="text" class="myinputbox" value="" placeholder="ここに駒にしたいキャラシのURLをコピペしてくれ(^^)" />
         <input name="btn" type="button" value="コマ作成・皇" onclick="makeDXCharacter()" />
 
     </form>
     <form name="resultform">
-        <textarea name="myresult" class="mybox" placeholder="クリップボードへの自動転送うまくいかない場合はここにでたやつをコピペしてくれ(^^)"
-            rows="3"></textarea>
+        <textarea name="myresult" class="myoutputbox" placeholder="クリップボードへの自動転送うまくいかない場合はここにでたやつをコピペしてくれ(^^)"
+            cols="26" rows="3"></textarea>
     </form>
     <p>
         CSSの知識ないんでしょっぱい画面です<br>スマホ対応もできない敗北者～🌈
@@ -28,10 +28,17 @@
     </p>
 </body>
 <style>
-    .mybox {
+    .myinputbox {
         display: inline-block;
         width: 100%;
-        max-width: 330px;
+        font-size: large;
+        max-width: 512px;
+    }
+    .myoutputbox {
+        display: inline-block;
+        width: 100%;
+        font-size: large;
+        max-width: 640px;
     }
     p{
         display: inline-block;
