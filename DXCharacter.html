@@ -8,14 +8,17 @@
 
 <body>
     <p>なるほどな🌳</p>
-    <button type="button" onclick="makeDXCharacter()">おわァアアア～～っ！！！</button>
+    <form name="myform">
+        <input name="title" type="text" value="Hello World1" />
+        <input name="btn" type="button" value="実行" onclick="makeDXCharacter()"/>
+    </form>
 </body>
 <script type="text/javascript">
-    makeDXCharacter=function() {
-        var charURLstr=window.prompt('URLくれ');
+    makeDXCharacter = function () {
+        var charURLstr = document.forms.myform.title.value;
         var charURL;
         try {
-            charURL=new URL(charURLstr);
+            charURL = new URL(charURLstr);
         } catch (error) {
             alert("🌈");
         }
