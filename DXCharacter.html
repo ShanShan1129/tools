@@ -12,8 +12,7 @@
         キャラシサイトのコマ生成器だ<br>飲んでくれ！<br>キャラクター登録所とかゆとシとかに対応してるのをｵｯｼｪﾙ
     </p>
     <form name="myform">
-        <input name="URLinput" type="text" class="myinputbox" value=""
-            placeholder="ここに駒にしたいキャラシのURLをコピペしてくれ(^^)" />
+        <input name="URLinput" type="text" class="myinputbox" value="" placeholder="ここに駒にしたいキャラシのURLをコピペしてくれ(^^)" />
         <input name="btn" type="button" value="コマ作成・皇" onclick="makeDXCharacter()" />
         <label><input type="checkbox" id="YutoLimiter">自鯖のゆとシを使う</label>
         <label><input type="checkbox" id="corsLimiter">無法</label>
@@ -141,10 +140,6 @@
             document.body.appendChild(s);
         }
         else if (checkYutorize(charURL)) {
-            alert('ゆとシだね');
-            //alert(JSON.stringify(await getYutorizeJsonData(charURL)));
-            //alert(JSON.stringify(await getYutorizeChatPalette(charURL)));
-
             var s = document.createElement("script");
             s.src = charURL + '&mode=json&callback=OCLYutoDX3';
             OCLYutoDX3 = async (data) => {
@@ -156,10 +151,8 @@
                     document.forms.resultform.myresult.value = 'ちょっと時間がｶｶﾙﾖｯ';
                     palette = await getYutorizeChatPalette(charURL);
                 }
-                else{
-                    palette={};
-                    palette.palette={};
-                    palette.parameters={};
+                else {
+                    palette = {};
                 }
                 var data2 = {
                     "kind": "character",
@@ -258,7 +251,7 @@
         };
         const palette = [];
         const parameterRegExp = /^\/\/(.+)[=\uFF1D]([0-9\+\-\/\*]+)?$/;
-        str=str.replace(/&lt;br&gt;/g,'\n');
+        str = str.replace(/&lt;br&gt;/g, '\n');
         str.split('\n').forEach((line) => {
             const parameterExecResult = parameterRegExp.exec(line);
             if (parameterExecResult) {
