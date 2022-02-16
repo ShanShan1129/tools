@@ -298,9 +298,9 @@
         };
         const palette = [];
         const parameterRegExp = /^\/\/(.+)[=\uFF1D]([0-9\+\-\/\*]+)?$/;
-        console.log(str);
+        //console.log(str);
         str = str.replace(/&lt;br&gt;/g, '\n');
-        console.log(str);
+        //console.log(str);
         str.split('\n').forEach((line) => {
             const parameterExecResult = parameterRegExp.exec(line);
             if (parameterExecResult) {
@@ -313,9 +313,9 @@
             }
         });
         result.palette = palette.join('\n');
-        console.log(result.parameters);
-        console.log(Boolean(result.parameters));
-        console.log(result.parameters !== []);
+        //console.log(result.parameters);
+        //console.log(Boolean(result.parameters));
+        //console.log(result.parameters !== []);
         return result;
     }
 </script>
