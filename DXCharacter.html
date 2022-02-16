@@ -34,6 +34,7 @@
     <p>
         ver1.3<br>
         ゆとシで自作チャパレを使っている場合かつチャパレに能力値変数がない場合プリセットのパラメータを使用するように<br>
+        ついでに無法無しでもプリセットが出てくるようになりました<br>
         ver1.2<br>
         ゆとシに対応開始
     </p>
@@ -187,7 +188,7 @@
                                 "max": data.savingTotal
                             }
                         ],
-                        "params": JSON.stringify(palette.parameters) !== JSON.stringify([]) ? palette.parameters :
+                        "params": (JSON.stringify(palette.parameters) !== JSON.stringify([]) && palette.parameters!==undefined)? palette.parameters :
                             [
                                 {
                                     "label": "肉体",
