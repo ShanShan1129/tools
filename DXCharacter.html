@@ -22,13 +22,21 @@
             rows="3"></textarea>
     </form>
     <p>
-        例外はあるけどロイスは初期値が3の固定値です　気を付けてくれ<br>また、ゆとシートでデフォのチャットパレットを使ってる場合、自分で引っ張って来る必要があることを教える<br>でもめんどかったら無法にチェック入れると引っ張れることも教える　無法だけど
+        例外はあるけどロイスは初期値が3の固定値です　気を付けてくれ<br>また、ゆとシートでデフォのチャットパレットを使ってる場合、パラメータも含めて自分で引っ張って来る必要があることを教える<br>でもめんどかったら無法にチェック入れると引っ張れることも教える　無法だけど
     </p>
     <p>
         CSSの知識ないんでしょっぱい画面です<br>スマホ対応もできない敗北者～🌈
     </p>
     <p>
         結局javascriptでいろんなとこのJSONのAPI叩いてるだけなのを教える
+    </p>
+    <h3>🌳変更履歴🌳</h3>
+    <p>
+        ver1.3<br>
+        ゆとシで自作チャパレを使っている場合かつチャパレに能力値変数がない場合プリセットのパラメータを使用するように<br>
+        ついでに無法無しでもプリセットが出てくるようになりました<br>
+        ver1.2<br>
+        ゆとシに対応開始
     </p>
 </body>
 <style>
@@ -148,7 +156,7 @@
                     palette = separateYutorizeChatPalette(data.chatPalette);
                 }
                 else if (document.getElementById('corsLimiter').checked) {
-                    document.forms.resultform.myresult.value = 'ちょっと時間がｶｶﾙﾖｯ';
+                    document.forms.resultform.myresult.value = '無法中…ちょっと時間がｶｶﾙﾖｯ';
                     palette = await getYutorizeChatPalette(charURL);
                 }
                 else {
@@ -180,7 +188,46 @@
                                 "max": data.savingTotal
                             }
                         ],
-                        "params": palette.parameters || [],
+                        "params": (JSON.stringify(palette.parameters) !== JSON.stringify([]) && palette.parameters!==undefined)? palette.parameters :
+                            [
+                                {
+                                    "label": "肉体",
+                                    "value": data.sttTotalBody
+                                }, {
+                                    "label": "感覚",
+                                    "value": data.sttTotalSense
+                                }, {
+                                    "label": "精神",
+                                    "value": data.sttTotalMind
+                                }, {
+                                    "label": "社会",
+                                    "value": data.sttTotalSocial
+                                }, {
+                                    "label": "白兵",
+                                    "value": data.skillTotalMelee
+                                }, {
+                                    "label": "回避",
+                                    "value": data.skillTotalDodge
+                                }, {
+                                    "label": "射撃",
+                                    "value": data.skillTotalRanged
+                                }, {
+                                    "label": "知覚",
+                                    "value": data.skillTotalPercept
+                                }, {
+                                    "label": "RC",
+                                    "value": data.skillTotalRC
+                                }, {
+                                    "label": "意志",
+                                    "value": data.skillTotalWill
+                                }, {
+                                    "label": "交渉",
+                                    "value": data.skillTotalNegotiate
+                                }, {
+                                    "label": "調達",
+                                    "value": data.skillTotalProcure
+                                }
+                            ] || [],
                         "active": true,
                         "secret": false,
                         "invisible": false,
@@ -251,7 +298,9 @@
         };
         const palette = [];
         const parameterRegExp = /^\/\/(.+)[=\uFF1D]([0-9\+\-\/\*]+)?$/;
+        console.log(str);
         str = str.replace(/&lt;br&gt;/g, '\n');
+        console.log(str);
         str.split('\n').forEach((line) => {
             const parameterExecResult = parameterRegExp.exec(line);
             if (parameterExecResult) {
@@ -264,6 +313,9 @@
             }
         });
         result.palette = palette.join('\n');
+        console.log(result.parameters);
+        console.log(Boolean(result.parameters));
+        console.log(result.parameters !== []);
         return result;
     }
 </script>
