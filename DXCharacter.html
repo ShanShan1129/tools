@@ -11,7 +11,7 @@
     <p>
         キャラシサイトのコマ生成器だ<br>飲んでくれ！<br>キャラクター登録所とかゆとシとかに対応してるのをｵｯｼｪﾙ<br>ただゆとシに関しては公式discでiphone対応の動きが出てきているので多分使う必要がなくなるんじゃない☆
     </p>
-    <form name="myform">
+    <form name="myform" onsubmit="makeDXCharacter(); return false;">
         <input name="URLinput" type="text" class="myinputbox" value="" placeholder="ここに駒にしたいキャラシのURLをコピペしてくれ(^^)" />
         <input name="btn" type="button" value="コマ作成・皇" onclick="makeDXCharacter()" />
         <label><input type="checkbox" id="YutoLimiter">自鯖のゆとシを使う</label>
