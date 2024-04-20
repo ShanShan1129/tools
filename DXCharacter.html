@@ -11,14 +11,13 @@
     <p>
         キャラシサイトのコマ生成機だ<br>
         飲んでくれ！<br>
-        <a href= "https://character-sheets.appspot.com/dx3/edit.html" >いつものDXのサイト</a>とか<a href= "https://yutorize.2-d.jp/ytsheet/dx3rd/" >DXのゆとシ</a>とかに対応してるのをｵｯｼｪﾙ<br>
-        <a href= "https://character-sheets.appspot.com/satasupe/edit.html" >サタスペ</a>にも対応始めました…だろ？
+        <a href= "https://character-sheets.appspot.com/dx3/edit.html" onClick="return alert_on_move()">いつものDXのサイト</a>とか<a href= "https://yutorize.2-d.jp/ytsheet/dx3rd/" onClick="return alert_on_move()">DXのゆとシ</a>とかに対応してるのをｵｯｼｪﾙ<br>
+        <a href= "https://character-sheets.appspot.com/satasupe/edit.html" onClick="return alert_on_move()">サタスペ</a>にも対応始めました…だろ？
     </p>
     <form name="myform" onsubmit="makeDXCharacter(); return false;">
         <input name="URLinput" type="text" class="myinputbox" value="" placeholder="ここにキャラシのURLをコピペしてくれ(^^)" />
         <input name="btn" type="button" value="コマ作成・皇" onclick="makeDXCharacter()" />
         <label><input type="checkbox" id="YutoLimiter">公式以外のゆとシ</label>
-        <label><input type="checkbox" id="corsLimiter">どうしても</label>
     </form>
     <form name="resultform">
         <textarea name="myresult" class="myoutputbox" placeholder="クリップボードへの自動転送うまくいかない場合はここにでたやつをコピペしてくれ(^^)" cols="26"
@@ -37,11 +36,15 @@
         <summary>めんどいけどお前？</summary>
             <details>
             <summary>🥺</summary>
-                めんどかったらどうしてもにチェック入れると引っ張れることも教える<br>
+                めんどかったら下のどうしてもにチェック入れると引っ張れることも教える<br>
                 ただセキュリティリスクが完全に無くはない無法なので、<br>
                 気になるなら手動でチャパレ引っ張ればいいんじゃないか？(業界関係者)<br>
+                <form name="myform" onsubmit="makeDXCharacter(); return false;">
+                    <label><input type="checkbox" id="corsLimiter">どうしても</label>
+                </form>
+                逆に言えばどうしてもにチェック入れなければ何も問題ないけど<br>
                 ンマーそもそもゆとシはコマ作成機能元からあるんだがな<br>
-                古いバージョンのゆとシを自鯖で構築してるようなヤツは関係あるかもしれんがどうなんだろなお頭
+                <a href= "https://codetabs.com/cors-proxy/cors-proxy.html" onClick="return alert_on_move()">技術的なことを言えばここ使ってるだけだ 笑ってくれ(^^)</a>
             </details>
         </details>
         <br>
@@ -49,11 +52,11 @@
     </p>
     <p>
         htmlの知識もCSSの知識もないんでしょっぱい画面だ 笑ってくれ(^^)<br>
-        できるシャンカーは<a href= "https://github.com/ShanShan1129/tools/pulls" >プルリクくれ</a>
+        できるシャンカーは<a href= "https://github.com/ShanShan1129/tools/pulls" onClick="return alert_on_move()">プルリクくれ</a>
     </p>
     <p>
         結局javascriptでいろんなとこのJSONのAPI叩いてるだけなのを教える　API対応クソありがてェだろ<br>
-        また機能について要望があれば<a href= "https://ccfolia.com/rooms/9FtNIhx-X" >ログ収集卓</a>で受け付ける…だろ？<br>
+        また機能について要望があれば<a href= "https://ccfolia.com/rooms/9FtNIhx-X" onClick="return alert_on_move()">ログ収集卓</a>で受け付ける…だろ？<br>
         このシステムのこのキャラシサイト対応してくれ(^^)とかも受け付ける…だろ？<br>
         おれがやったことないシステムはヒアリング濃厚になるかもしれないがその時は…笑ってくれ(^^)
     </p>
@@ -497,6 +500,10 @@
         //console.log(Boolean(result.parameters));
         //console.log(result.parameters !== []);
         return result;
+    }
+    
+    function alert_on_move(){
+        return confirm("別のページに移動するけどお前？")
     }
 </script>
 
