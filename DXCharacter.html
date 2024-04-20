@@ -11,7 +11,7 @@
     <p>
         キャラシサイトのコマ生成機だ<br>
         飲んでくれ！<br>
-        <a href= "https://character-sheets.appspot.com/dx3/edit.html" >いつものサイト</a>とか<a href= "https://yutorize.2-d.jp/ytsheet/dx3rd/" >ゆとシ</a>とかに対応してるのをｵｯｼｪﾙ<br>
+        <a href= "https://character-sheets.appspot.com/dx3/edit.html" >いつものDXのサイト</a>とか<a href= "https://yutorize.2-d.jp/ytsheet/dx3rd/" >DXのゆとシ</a>とかに対応してるのをｵｯｼｪﾙ<br>
         <a href= "https://character-sheets.appspot.com/satasupe/edit.html" >サタスペ</a>にも対応始めました…だろ？
     </p>
     <form name="myform" onsubmit="makeDXCharacter(); return false;">
@@ -25,24 +25,43 @@
             rows="3"></textarea>
     </form>
     <p>
-        DXの場合ロイスは初期値が3の固定値…だろ？　Dロイス等に合わせて修正してくれ(^^)<br>
-        またゆとシでデフォのチャットパレットを使ってる場合、パラメータも含めて自分で引っ張って来る必要があることを教える<br>
-        めんどかったらどうしてもにチェック入れると引っ張れることも教える<br>
-        ただCROS回避する無法なので気になるなら手動でチャパレ引っ張ればいいんじゃないか？(業界関係者)<br>
+        Dロイスがあるキャラはロイス数の最大値とか調整されるけど<br>
+        Dロイスの行は種類に"D"とか"Dロイス"とか書いておくことを…勧める…<br>
         <br>
         サタスペの場合サイフなど卓跨いでも回復しないリソースがあることを教える<br>
         トラウマついてたら精神点の最大値減ったりするな　ルフィ<br>
-        でもこの生成機はその辺あんまり考えないので修正は任せる…だろ？
+        でもこの生成機はその辺あんまり考えないので修正は任せる…だろ？<br>
+        <br>
+        ゆとシでデフォのチャットパレットを使ってる場合、パラメータも含めて自分で引っ張って来る必要があることを教える
+        <details>
+        <summary>めんどいけどお前？</summary>
+            <details>
+            <summary>🥺</summary>
+                めんどかったらどうしてもにチェック入れると引っ張れることも教える<br>
+                ただセキュリティリスクが完全に無くはない無法なので、<br>
+                気になるなら手動でチャパレ引っ張ればいいんじゃないか？(業界関係者)<br>
+                ンマーそもそもゆとシはコマ作成機能元からあるんだがな<br>
+                古いバージョンのゆとシを自鯖で構築してるようなヤツは関係あるかもしれんがどうなんだろなお頭
+            </details>
+        </details>
+        <br>
+
     </p>
     <p>
-        htmlの知識もCSSの知識もないんでしょっぱい画面だ<br>
-        できるシャンカーはプルリクくれ
+        htmlの知識もCSSの知識もないんでしょっぱい画面だ 笑ってくれ(^^)<br>
+        できるシャンカーは<a href= "https://github.com/ShanShan1129/tools/pulls" >プルリクくれ</a>
     </p>
     <p>
-        結局javascriptでいろんなとこのJSONのAPI叩いてるだけなのを教える　API対応クソありがてェだろ
+        結局javascriptでいろんなとこのJSONのAPI叩いてるだけなのを教える　API対応クソありがてェだろ<br>
+        また機能について要望があれば<a href= "https://ccfolia.com/rooms/9FtNIhx-X" >ログ収集卓</a>で受け付ける…だろ？<br>
+        このシステムのこのキャラシサイト対応してくれ(^^)とかも受け付ける…だろ？<br>
+        おれがやったことないシステムはヒアリング濃厚になるかもしれないがその時は…笑ってくれ(^^)
     </p>
     <h3>変更履歴</h3>
     <p>
+        ver1.5<br>
+        DXでDロイスの個数に対応して初期ロイス数減らすように<br>
+        ロイスの種類欄にDが含まれていると反応するけど？<br>
         ver1.4<br>
         サタスペ対応始めました…だろ？<br>
         ver1.3<br>
@@ -86,9 +105,12 @@
             return
         }
         if (checkDXCharacterSheets(charURL)) {
+            //https://character-sheets.appspot.com/dx3/edit.html?key=ahVzfmNoYXJhY3Rlci1zaGVldHMtbXByFwsSDUNoYXJhY3RlckRhdGEYr5j-ygUM
             var s = document.createElement("script");
             s.src = "https://" + charURL.hostname + "/dx3/display?ajax=1&callback=OCLDX3&key=" + (new URLSearchParams(charURL.search).get('key'));
             OCLDX3 = (data) => {
+                Dlois=data.lois.filter(n=>/d|D|Ｄ|ｄ/.test(n.type)).length;
+                console.log("Dロイス数:"+Dlois);
                 var data2 = {
                     "kind": "character",
                     "data": {
@@ -108,8 +130,8 @@
                             },
                             {
                                 "label": "ロイス",
-                                "value": 3,
-                                "max": 7
+                                "value": (3-Dlois)>0?3-Dlois:0,
+                                "max": (7-Dlois)>0?7-Dlois:0
                             },
                             {
                                 "label": "侵蝕率B",
@@ -144,7 +166,60 @@
                         "commands": "◆汎用チャットパレット\n//上昇\n{侵蝕率}+1d10　登場/リザレクト\n{侵蝕率}+nd10　ジェネシフト\n{侵蝕率}+2d10　衝動判定\n\n//判定用\n({肉体}+{侵蝕率B})dx　【肉体】\n({感覚}+{侵蝕率B})dx　【感覚】\n({精神}+{侵蝕率B})dx　【精神】\n({社会}+{侵蝕率B})dx　【社会】\n\n({感覚}+{侵蝕率B})dx　〈知覚〉\n({精神}+{侵蝕率B})dx　〈意志〉\n\n({肉体}+{侵蝕率B})dx　〈運転：〉\n({感覚}+{侵蝕率B})dx　〈芸術：〉\n({精神}+{侵蝕率B})dx　〈知識：〉\n({社会}+{侵蝕率B})dx　〈情報：〉\n\n//命中+コンボ\nコンボ『名称』タイミング/技能/射程/対象/侵蝕率n/効果\n({}+{侵蝕率B})dx8　99↓\n({}+{侵蝕率B})dx7　100↑\n\nd10+\nd10+\n\n//回避\n({肉体}+{侵蝕率B})dx　〈回避〉\n\n//バックトラック\n自己申告\n侵蝕率{侵蝕率}% ロイス{ロイス}個\n\n{侵蝕率}-{ロイス}d10　通常振り/追加振り\n{侵蝕率}-({ロイス}+{ロイス})d10　2倍振り"
                     }
                 };
-
+                //技能レベル設定
+                skil_array=[
+                    ["hak","白兵"],
+                    ["sha","射撃"],
+                    ["rc","RC"],
+                    ["kou","交渉"],
+                    ["kai","回避"],
+                    ["tik","知覚"],
+                    ["isi","意志"],
+                    ["tyo","調達"]
+                ]
+                skil_array.forEach(n=>{
+                    alv = data.skills[n[0]].A.lv ?Number(data.skills[n[0]].A.lv):0;
+                    dlv = data.skills[n[0]].D.dlv ? Number(data.skills[n[0]].D.dlv):0;
+                    Lv = Number(data.skills[n[0]].A.lv) + Number(data.skills[n[0]].D.dlv);
+                    skill_name=n[1];
+                    param = {"label": skill_name,"value": String(Lv)};
+                    data2.data.params.push(param)
+                });
+                data.skills.B.forEach(n=>{
+                    if(n.name1){
+                        alv = n.lv1;
+                        alv = alv?Number(alv):0;
+                        dlv = n.dlv1;
+                        dlv = dlv?Number(dlv):0;
+                        param = {"label": "運転:"+n.name1,"value": String(alv+dlv)};
+                        data2.data.params.push(param)
+                    }
+                    if(n.name2){
+                        alv = n.lv2;
+                        alv = alv?Number(alv):0;
+                        dlv = n.dlv2;
+                        dlv = dlv?Number(dlv):0;
+                        param = {"label": "芸術:"+n.name2,"value": String(alv+dlv)};
+                        data2.data.params.push(param)
+                    }
+                    if(n.name3){
+                        alv = n.lv3;
+                        alv = alv?Number(alv):0;
+                        dlv = n.dlv3;
+                        dlv = dlv?Number(dlv):0;
+                        param = {"label": "知識:"+n.name3,"value": String(alv+dlv)};
+                        data2.data.params.push(param)
+                    }
+                    if(n.name4){
+                        alv = n.lv4;
+                        alv = alv?Number(alv):0;
+                        dlv = n.dlv4;
+                        dlv = dlv?Number(dlv):0;
+                        param = {"label": "情報:"+n.name4,"value": String(alv+dlv)};
+                        data2.data.params.push(param)
+                    }
+                });
+                
                 var Text = JSON.stringify(data2);
                 document.forms.resultform.myresult.value = Text;
                 navigator.clipboard.writeText(Text)
@@ -154,6 +229,7 @@
                     .catch(err => {
                         alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
                     });
+                //JSONP処理コールバック関数定義終了
             };
             document.body.appendChild(s);
         }
@@ -236,6 +312,7 @@
                     .catch(err => {
                         alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
                     });
+                //JSONP処理コールバック関数定義終了
             };
             document.body.appendChild(s);
         }
@@ -334,12 +411,23 @@
                     .catch(err => {
                         alert('下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
                     });
+                //JSONP処理コールバック関数定義終了
             };
             document.body.appendChild(s);
 
         }
         else {
-            alert("なんだ！？(^^)なんだ！？(^^)\nどこのURLなんだ？");
+            //URLが間違っている場合
+            errlist=[
+                        "なんだ！？(^^)なんだ！？(^^)\nどこのURLなんだ？",
+                        "うぐっ不明なURLすぎだァ～～！！\n浮上するぞォ！！",
+                        "ｶﾞﾗﾗﾗ←URLを開ける\nわ…わりぃ!!!!//////\nﾋﾟｼｬﾝ!!!!←URLを閉める\n(でも……なんか知らんURL見た//////)",
+                        "おまｯ!?なんてURLしてんだ!?\nんなURLでコマ作成機ん中を歩き回るな（怒）",
+                        "ｽﾞﾁﾞｭｯｸﾞﾁｭ、ｽﾞﾌﾟﾝｯ!!(エラーが突き上げる)",
+                        "決めたんやボクエラーになる\nエラーになって変えたる\n乱菊が泣かんでもええようにしたる",
+                    ]
+            myrand = Math.floor(Math.random() * errlist.length);
+            alert(errlist[myrand]);
         }
     };
 
