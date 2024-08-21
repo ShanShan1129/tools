@@ -68,6 +68,8 @@
     </p>
     <h3>変更履歴</h3>
     <p>
+        ver1.9.1<br>
+        まよキン対応更新　国も対応したけどおれ？<br>
         ver1.9.0<br>
         そろそろまよキン対応するか　ゾロもランドメイカーの一族<br>
         ver1.8<br>
@@ -434,15 +436,14 @@
                 //JSONP処理コールバック関数定義終了
             };
             document.body.appendChild(s);
-        }
-        else if (checkmayolandCharacterSheets(charURL)) {
+        } else if (checkmayolandCharacterSheets(charURL)) {
             var s = document.createElement("script");
             s.src = "https://" + charURL.hostname + "/mayoland/display?ajax=1&callback=OCLmayoland&key=" + (new URLSearchParams(charURL.search).get('key'));
             OCLmayoland = (data) => {
                 var data2 = {
                     "kind": "character",
                     "data": {
-                        "name": data.base.name || data.base.nameKana,
+                        "name": data.base.name,
                         "memo": "アイテム\n",
                         "externalUrl": charURL.href,
                         "initiative": 0,
@@ -491,11 +492,11 @@
                     }
                 };
                 for (let index = 1; index <= 6; index++) {
-                    data2.data.memo += index+".";
-                    data2.data.memo += (data["equip" + index]?data["equip" + index]:"")+"\n";
+                    data2.data.memo += index + ".";
+                    data2.data.memo += (data["equip" + index] ? data["equip" + index] : "") + "\n";
                 }
-                data2.data.memo+="配下.";
-                data2.data.memo+=data.equip7?data.equip7:"";
+                data2.data.memo += "配下.";
+                data2.data.memo += data.equip7 ? data.equip7 : "";
                 data2.data.commands = [
                     "//能力値判定　xに目標値を記入",
                     "2MK+{才覚}+0>=x　才覚判定",
@@ -545,6 +546,97 @@
                             ":配下-",
                         ].join("\n")
                     );
+                }
+                var Text = JSON.stringify(data2);
+                document.forms.resultform.myresult.value = Text;
+                navigator.clipboard.writeText(Text)
+                    .then(function () {
+                        alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)');
+                    })
+                    .catch(err => {
+                        alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
+                    });
+                //JSONP処理コールバック関数定義終了
+            };
+            document.body.appendChild(s);
+        } else if (checkmayokingCharacterSheets(charURL)) {
+            var s = document.createElement("script");
+            s.src = "https://" + charURL.hostname + "/mayoking/display?ajax=1&callback=OCLmayoking&key=" + (new URLSearchParams(charURL.search).get('key'));
+            OCLmayoking = (data) => {
+                var data2 = {
+                    "kind": "character",
+                    "data": {
+                        "name": data.base.name,
+                        "externalUrl": charURL.href,
+                        "initiative": -99,
+                        "status": [
+                            {
+                                "label": "総人口",
+                                "value": data.populace.base,
+                                "max": data.populace.max
+                            },
+                            {
+                                "label": "民",
+                                "value": data.people.kingdam,
+                                "max": data.people.kingdam
+                            },
+                            {
+                                "label": "減った配下の数",
+                                "value": 0,
+                                "max": 0
+                            },
+                            {
+                                "label": "民の声",
+                                "value": data.people.voice.current,
+                                "max": data.people.voice.max
+                            },
+                            {
+                                "label": "ターン",
+                                "value": 0,
+                                "max": 3
+                            },
+                            {
+                                "label": "クォーター",
+                                "value": 0,
+                                "max": 4
+                            },
+                            {
+                                "label": "MG",
+                                "value": 0,
+                                "max": 0
+                            },
+                        ],
+                        "params": [
+                            {
+                                "label": "生活",
+                                "value": data.life.total
+                            },
+                            {
+                                "label": "文化",
+                                "value": data.culture.total
+                            },
+                            {
+                                "label": "治安",
+                                "value": data.security.total
+                            },
+                            {
+                                "label": "軍事",
+                                "value": data.military.total
+                            }
+                        ],
+                        "active": true, "secret": false, "invisible": false, "hideStatus": false,
+                        "commands": ""
+                    }
+                };
+
+
+                if (document.getElementById('paramAdd').checked) {
+                    data2.data.commands = [
+                        "//ステータス操作",
+                        ":クォーター+1",
+                        ":クォーター=0",
+                        ":ターン+1",
+                    ].join("\n");
                 }
                 var Text = JSON.stringify(data2);
                 document.forms.resultform.myresult.value = Text;
@@ -687,6 +779,9 @@
     }
     function checkmayolandCharacterSheets(url) {
         return (url.hostname === "character-sheets.appspot.com" && url.pathname.match(/\/mayoland\/edit\.html$/));
+    }
+    function checkmayokingCharacterSheets(url) {
+        return (url.hostname === "character-sheets.appspot.com" && url.pathname.match(/\/mayoking\/edit\.html$/));
     }
     function checkYutorize(url) {
         return ((url.hostname === "yutorize.2-d.jp" || document.getElementById('YutoLimiter').checked) && url.pathname.match(/\/dx3rd\//));
