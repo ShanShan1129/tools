@@ -11,12 +11,16 @@
     <p>
         キャラシサイトのコマ生成機だ<br>
         飲んでくれ！<br>
-        <a href= "https://character-sheets.appspot.com/dx3/edit.html" onClick="return alert_on_move()">いつものDXのサイト</a>とか<a href= "https://yutorize.2-d.jp/ytsheet/dx3rd/" onClick="return alert_on_move()">DXのゆとシ</a>とかに対応してるのをｵｯｼｪﾙ<br>
-        <a href= "https://character-sheets.appspot.com/satasupe/edit.html" onClick="return alert_on_move()">サタスペ</a>にも対応始めました…だろ？
+        勝手にクリップボードにコピーしてくれる機能付き<br>
+        <a href="https://character-sheets.appspot.com/dx3/edit.html" onClick="return alert_on_move()">いつものDXのサイト</a>とか<a
+            href="https://yutorize.2-d.jp/ytsheet/dx3rd/" onClick="return alert_on_move()">DXのゆとシ</a>とかに対応してるのをｵｯｼｪﾙ<br>
+        <a href="https://character-sheets.appspot.com/satasupe/edit.html"
+            onClick="return alert_on_move()">サタスペ</a>にも対応始めました…だろ？
     </p>
     <form name="myform" onsubmit="makeDXCharacter(); return false;">
         <input name="URLinput" type="text" class="myinputbox" value="" placeholder="ここにキャラシのURLをコピペしてくれ(^^)" />
         <input name="btn" type="button" value="コマ作成・皇" onclick="makeDXCharacter()" />
+        <label><input type="checkbox" id="paramAdd">パラメータ操作チャパレ</label>
         <label><input type="checkbox" id="YutoLimiter">公式以外のゆとシ</label>
     </form>
     <form name="resultform">
@@ -32,36 +36,40 @@
         でもこの生成機はその辺あんまり考えないので修正は任せる…だろ？<br>
         <br>
         ゆとシでデフォのチャットパレットを使ってる場合、パラメータも含めて自分で引っ張って来る必要があることを教える
-        <details>
+    <details>
         <summary>めんどいけどお前？</summary>
-            <details>
+        <details>
             <summary>🥺</summary>
-                めんどかったら下のどうしてもにチェック入れると引っ張れることも教える<br>
-                ただセキュリティリスクが完全に無くはない無法なので、<br>
-                気になるなら手動でチャパレ引っ張ればいいんじゃないか？(業界関係者)<br>
-                <form name="myform" onsubmit="makeDXCharacter(); return false;">
-                    <label><input type="checkbox" id="corsLimiter">どうしても</label>
-                </form>
-                逆に言えばどうしてもにチェック入れなければ何も問題ないけど<br>
-                ンマーそもそもゆとシはコマ作成機能元からあるんだがな<br>
-                <a href= "https://codetabs.com/cors-proxy/cors-proxy.html" onClick="return alert_on_move()">技術的なことを言えばここ使ってるだけだ 笑ってくれ(^^)</a>
-            </details>
+            めんどかったら下のどうしてもにチェック入れると引っ張れることも教える<br>
+            ただセキュリティリスクが完全に無くはない無法なので、<br>
+            気になるなら手動でチャパレ引っ張ればいいんじゃないか？(業界関係者)<br>
+            <form name="myform" onsubmit="makeDXCharacter(); return false;">
+                <label><input type="checkbox" id="corsLimiter">どうしても</label>
+            </form>
+            逆に言えばどうしてもにチェック入れなければ何も問題ないけど<br>
+            ンマーそもそもゆとシはコマ作成機能元からあるんだがな<br>
+            <a href="https://codetabs.com/cors-proxy/cors-proxy.html"
+                onClick="return alert_on_move()">技術的なことを言えばここ使ってるだけだ 笑ってくれ(^^)</a>
         </details>
-        <br>
+    </details>
+    <br>
 
     </p>
     <p>
         htmlの知識もCSSの知識もないんでしょっぱい画面だ 笑ってくれ(^^)<br>
-        できるシャンカーは<a href= "https://github.com/ShanShan1129/tools/pulls" onClick="return alert_on_move()">プルリクくれ</a>
+        できるシャンカーは<a href="https://github.com/ShanShan1129/tools/pulls" onClick="return alert_on_move()">プルリクくれ</a>
     </p>
     <p>
         結局javascriptでいろんなとこのJSONのAPI叩いてるだけなのを教える　API対応クソありがてェだろ<br>
-        また機能について要望があれば<a href= "https://ccfolia.com/rooms/9FtNIhx-X" onClick="return alert_on_move()">ログ収集卓</a>で受け付ける…だろ？<br>
+        また機能について要望があれば<a href="https://ccfolia.com/rooms/9FtNIhx-X"
+            onClick="return alert_on_move()">ログ収集卓</a>で受け付ける…だろ？<br>
         このシステムのこのキャラシサイト対応してくれ(^^)とかも受け付ける…だろ？<br>
         おれがやったことないシステムはヒアリング濃厚になるかもしれないがその時は…笑ってくれ(^^)
     </p>
     <h3>変更履歴</h3>
     <p>
+        ver1.9.0<br>
+        そろそろまよキン対応するか　ゾロもランドメイカーの一族<br>
         ver1.8<br>
         サタスペのチャパレで「({犯罪})R>=n[,1] 犯罪」となっていたのを「({犯罪}<font color="#ff0000">+0</font>)R>=n[,1] 犯罪」に<br>
         あーこれおれがダイス追加するときに何度も計算式間違えたからか<br>
@@ -103,16 +111,20 @@
         display: inline-block;
         width: 100%;
     }
-    
+
     .gaming {
         /* 横長で虹色を作る */
         background: linear-gradient(to right, Magenta, yellow, Cyan, Magenta) 0% center/200%;
         animation: gaming 2s linear infinite;
-      }
-      @keyframes gaming {
+    }
+
+    @keyframes gaming {
+
         /* backgroundを移動させる */
-        100% { background-position-x: 200%; }
-  }
+        100% {
+            background-position-x: 200%;
+        }
+    }
 </style>
 
 <script type="text/javascript">
@@ -124,17 +136,20 @@
         } catch (error) {
             alert("🌈");
         }
-        if (!charURL.search || !navigator.clipboard) {
-            alert("error OCN");
-            return
+        if (!charURL.search) {
+            errURL();
+            return;
+        }
+        if (!navigator.clipboard) {
+            alert("あークリップボードへのアクセス権なくて鬱");
         }
         if (checkDXCharacterSheets(charURL)) {
             //https://character-sheets.appspot.com/dx3/edit.html?key=ahVzfmNoYXJhY3Rlci1zaGVldHMtbXByFwsSDUNoYXJhY3RlckRhdGEYr5j-ygUM
             var s = document.createElement("script");
             s.src = "https://" + charURL.hostname + "/dx3/display?ajax=1&callback=OCLDX3&key=" + (new URLSearchParams(charURL.search).get('key'));
             OCLDX3 = (data) => {
-                Dlois=data.lois.filter(n=>/d|D|Ｄ|ｄ/.test(n.type)).length;
-                console.log("Dロイス数:"+Dlois);
+                Dlois = data.lois.filter(n => /d|D|Ｄ|ｄ/.test(n.type)).length;
+                console.log("Dロイス数:" + Dlois);
                 var data2 = {
                     "kind": "character",
                     "data": {
@@ -154,8 +169,8 @@
                             },
                             {
                                 "label": "ロイス",
-                                "value": (3-Dlois)>0?3-Dlois:0,
-                                "max": (7-Dlois)>0?7-Dlois:0
+                                "value": (3 - Dlois) > 0 ? 3 - Dlois : 0,
+                                "max": (7 - Dlois) > 0 ? 7 - Dlois : 0
                             },
                             {
                                 "label": "侵蝕率B",
@@ -191,134 +206,134 @@
                     }
                 };
                 //技能レベル設定
-                skil_array=[
-                    ["hak","白兵"],
-                    ["sha","射撃"],
-                    ["rc","RC"],
-                    ["kou","交渉"],
-                    ["kai","回避"],
-                    ["tik","知覚"],
-                    ["isi","意志"],
-                    ["tyo","調達"]
+                skil_array = [
+                    ["hak", "白兵"],
+                    ["sha", "射撃"],
+                    ["rc", "RC"],
+                    ["kou", "交渉"],
+                    ["kai", "回避"],
+                    ["tik", "知覚"],
+                    ["isi", "意志"],
+                    ["tyo", "調達"]
                 ]
-                skil_array.forEach(n=>{
-                    alv = data.skills[n[0]].A.lv ?Number(data.skills[n[0]].A.lv):0;
-                    dlv = data.skills[n[0]].D.dlv ? Number(data.skills[n[0]].D.dlv):0;
+                skil_array.forEach(n => {
+                    alv = data.skills[n[0]].A.lv ? Number(data.skills[n[0]].A.lv) : 0;
+                    dlv = data.skills[n[0]].D.dlv ? Number(data.skills[n[0]].D.dlv) : 0;
                     Lv = Number(data.skills[n[0]].A.lv) + Number(data.skills[n[0]].D.dlv);
-                    skill_name=n[1];
-                    param = {"label": skill_name,"value": String(Lv)};
+                    skill_name = n[1];
+                    param = { "label": skill_name, "value": String(Lv) };
                     data2.data.params.push(param)
                 });
-                unten="";
-                geijutu="";
-                tisiki="";
-                jouhou="";
-                data.skills.B.forEach(n=>{
-                    if(n.name1){
+                unten = "";
+                geijutu = "";
+                tisiki = "";
+                jouhou = "";
+                data.skills.B.forEach(n => {
+                    if (n.name1) {
                         alv = n.lv1;
-                        alv = alv?Number(alv):0;
+                        alv = alv ? Number(alv) : 0;
                         dlv = n.dlv1;
-                        dlv = dlv?Number(dlv):0;
-                        param = {"label": "運転:"+n.name1,"value": String(alv+dlv)};
+                        dlv = dlv ? Number(dlv) : 0;
+                        param = { "label": "運転:" + n.name1, "value": String(alv + dlv) };
                         data2.data.params.push(param)
-                        unten+="({肉体}+{侵蝕率B})dx+{運転:"+n.name1+"}　〈運転:"+n.name1+"〉\n"
+                        unten += "({肉体}+{侵蝕率B})dx+{運転:" + n.name1 + "}　〈運転:" + n.name1 + "〉\n"
                     }
-                    if(n.name2){
+                    if (n.name2) {
                         alv = n.lv2;
-                        alv = alv?Number(alv):0;
+                        alv = alv ? Number(alv) : 0;
                         dlv = n.dlv2;
-                        dlv = dlv?Number(dlv):0;
-                        param = {"label": "芸術:"+n.name2,"value": String(alv+dlv)};
+                        dlv = dlv ? Number(dlv) : 0;
+                        param = { "label": "芸術:" + n.name2, "value": String(alv + dlv) };
                         data2.data.params.push(param)
-                        geijutu+="({感覚}+{侵蝕率B})dx+{芸術:"+n.name2+"}　〈芸術:"+n.name2+"〉\n"
+                        geijutu += "({感覚}+{侵蝕率B})dx+{芸術:" + n.name2 + "}　〈芸術:" + n.name2 + "〉\n"
                     }
-                    if(n.name3){
+                    if (n.name3) {
                         alv = n.lv3;
-                        alv = alv?Number(alv):0;
+                        alv = alv ? Number(alv) : 0;
                         dlv = n.dlv3;
-                        dlv = dlv?Number(dlv):0;
-                        param = {"label": "知識:"+n.name3,"value": String(alv+dlv)};
+                        dlv = dlv ? Number(dlv) : 0;
+                        param = { "label": "知識:" + n.name3, "value": String(alv + dlv) };
                         data2.data.params.push(param)
-                        tisiki+="({精神}+{侵蝕率B})dx+{知識:"+n.name3+"}　〈知識:"+n.name3+"〉\n"
+                        tisiki += "({精神}+{侵蝕率B})dx+{知識:" + n.name3 + "}　〈知識:" + n.name3 + "〉\n"
                     }
-                    if(n.name4){
+                    if (n.name4) {
                         alv = n.lv4;
-                        alv = alv?Number(alv):0;
+                        alv = alv ? Number(alv) : 0;
                         dlv = n.dlv4;
-                        dlv = dlv?Number(dlv):0;
-                        param = {"label": "情報:"+n.name4,"value": String(alv+dlv)};
+                        dlv = dlv ? Number(dlv) : 0;
+                        param = { "label": "情報:" + n.name4, "value": String(alv + dlv) };
                         data2.data.params.push(param)
-                        jouhou+="({社会}+{侵蝕率B})dx+{情報:"+n.name4+"}　〈情報:"+n.name4+"〉\n"
+                        jouhou += "({社会}+{侵蝕率B})dx+{情報:" + n.name4 + "}　〈情報:" + n.name4 + "〉\n"
                     }
                 });
-                
-                combo_dice=[];
-                
-                data.combo.forEach(n=>{
-                    tmp=n.under100;
+
+                combo_dice = [];
+
+                data.combo.forEach(n => {
+                    tmp = n.under100;
                     console.log(n.name)
-                    console.log(Object.keys(tmp).reduce((acc, key) => acc+(tmp[key]?1:0), 0))
-                    
-                    if(Object.keys(tmp).reduce((acc, key) => acc+(tmp[key]?1:0), 0)>0){
+                    console.log(Object.keys(tmp).reduce((acc, key) => acc + (tmp[key] ? 1 : 0), 0))
+
+                    if (Object.keys(tmp).reduce((acc, key) => acc + (tmp[key] ? 1 : 0), 0) > 0) {
                         console.log(n.name)
                         combo_dice.push([
-                        `//100%未満`,
-                        `${n.name}：${tmp.combination}`,
-                        `${tmp.timing} / ${tmp.type} / ${tmp.judge} / ${tmp.target} / ${tmp.range}`,
-                        `:侵蝕率+${tmp.cost}`
+                            `//100%未満`,
+                            `${n.name}：${tmp.combination}`,
+                            `${tmp.timing} / ${tmp.type} / ${tmp.judge} / ${tmp.target} / ${tmp.range}`,
+                            `:侵蝕率+${tmp.cost}`
                         ].join("\n"));
                     }
-                    tmp=n.over100;
-                    if(Object.keys(tmp).reduce((acc, key) => acc+(tmp[key]?1:0), 0)>0){
+                    tmp = n.over100;
+                    if (Object.keys(tmp).reduce((acc, key) => acc + (tmp[key] ? 1 : 0), 0) > 0) {
                         combo_dice.push([
-                        `//100%以上`,
-                        `${n.name}：`+tmp.combination||n.under100.combination+``,
-                        ``+(tmp.timing||n.under100.timing)+` / `+(tmp.type||n.under100.type)+` / `+(tmp.judge||n.under100.judge)+` / `+(tmp.target||n.under100.target)+` / `+(tmp.range||n.under100.range)+``,
-                        `:侵蝕率+${tmp.cost}`
+                            `//100%以上`,
+                            `${n.name}：` + tmp.combination || n.under100.combination + ``,
+                            `` + (tmp.timing || n.under100.timing) + ` / ` + (tmp.type || n.under100.type) + ` / ` + (tmp.judge || n.under100.judge) + ` / ` + (tmp.target || n.under100.target) + ` / ` + (tmp.range || n.under100.range) + ``,
+                            `:侵蝕率+${tmp.cost}`
                         ].join("\n"));
                     }
                 });
-                
-                data2.data.commands=[
-                "◆汎用チャットパレット",
-                "//上昇",
-                "{侵蝕率}+1d10　登場/リザレクト",
-                "{侵蝕率}+nd10　ジェネシフト",
-                "{侵蝕率}+2d10　衝動判定",
-                "",
-                "//判定用",
-                "({肉体}+{侵蝕率B})dx　【肉体】",
-                "({感覚}+{侵蝕率B})dx　【感覚】",
-                "({精神}+{侵蝕率B})dx　【精神】",
-                "({社会}+{侵蝕率B})dx　【社会】",
-                "",
-                "({肉体}+{侵蝕率B})dx+{白兵}　〈白兵〉",
-                "({肉体}+{侵蝕率B})dx+{回避}　〈回避〉",
-                ""+unten+"({感覚}+{侵蝕率B})dx+{射撃}　〈射撃〉",
-                "({感覚}+{侵蝕率B})dx+{知覚}　〈知覚〉",
-                ""+geijutu+"({精神}+{侵蝕率B})dx+{RC}　〈RC〉",
-                "({精神}+{侵蝕率B})dx+{意志}　〈意志〉",
-                ""+tisiki+"({社会}+{侵蝕率B})dx+{交渉}　〈交渉〉",
-                "({社会}+{侵蝕率B})dx+{調達}　〈調達〉",
-                ""+jouhou+"",
-                
-                "//命中+コンボ",
-                combo_dice.join("\n"),
-                "({}+{侵蝕率B})dx8　99↓",
-                "({}+{侵蝕率B})dx7　100↑",
-                "",
-                "d10+",
-                "d10+",
-                "",
-                "",
-                "//バックトラック",
-                "自己申告",
-                "侵蝕率{侵蝕率}% ロイス{ロイス}個",
-                "",
-                "{侵蝕率}-{ロイス}d10　通常振り/追加振り",
-                "{侵蝕率}-({ロイス}+{ロイス})d10　2倍振り"
+
+                data2.data.commands = [
+                    "◆汎用チャットパレット",
+                    "//上昇",
+                    "{侵蝕率}+1d10　登場/リザレクト",
+                    "{侵蝕率}+nd10　ジェネシフト",
+                    "{侵蝕率}+2d10　衝動判定",
+                    "",
+                    "//判定用",
+                    "({肉体}+{侵蝕率B})dx　【肉体】",
+                    "({感覚}+{侵蝕率B})dx　【感覚】",
+                    "({精神}+{侵蝕率B})dx　【精神】",
+                    "({社会}+{侵蝕率B})dx　【社会】",
+                    "",
+                    "({肉体}+{侵蝕率B})dx+{白兵}　〈白兵〉",
+                    "({肉体}+{侵蝕率B})dx+{回避}　〈回避〉",
+                    "" + unten + "({感覚}+{侵蝕率B})dx+{射撃}　〈射撃〉",
+                    "({感覚}+{侵蝕率B})dx+{知覚}　〈知覚〉",
+                    "" + geijutu + "({精神}+{侵蝕率B})dx+{RC}　〈RC〉",
+                    "({精神}+{侵蝕率B})dx+{意志}　〈意志〉",
+                    "" + tisiki + "({社会}+{侵蝕率B})dx+{交渉}　〈交渉〉",
+                    "({社会}+{侵蝕率B})dx+{調達}　〈調達〉",
+                    "" + jouhou + "",
+
+                    "//命中+コンボ",
+                    combo_dice.join("\n"),
+                    "({}+{侵蝕率B})dx8　99↓",
+                    "({}+{侵蝕率B})dx7　100↑",
+                    "",
+                    "d10+",
+                    "d10+",
+                    "",
+                    "",
+                    "//バックトラック",
+                    "自己申告",
+                    "侵蝕率{侵蝕率}% ロイス{ロイス}個",
+                    "",
+                    "{侵蝕率}-{ロイス}d10　通常振り/追加振り",
+                    "{侵蝕率}-({ロイス}+{ロイス})d10　2倍振り"
                 ].join("\n");
-                
+
                 var Text = JSON.stringify(data2);
                 document.forms.resultform.myresult.value = Text;
                 navigator.clipboard.writeText(Text)
@@ -355,12 +370,12 @@
                             },
                             {
                                 "label": "サイフ",
-                                "value": Number(data.base.abl.life.value)-Number(data.cond.wallet.value),
+                                "value": Number(data.base.abl.life.value) - Number(data.cond.wallet.value),
                                 "max": data.base.abl.life.value
                             },
                             {
                                 "label": "性業値",
-                                "value":data.base.emotion,
+                                "value": data.base.emotion,
                                 "max": 0
                             },
                         ],
@@ -420,7 +435,130 @@
             };
             document.body.appendChild(s);
         }
-        else if (checkYutorize(charURL)) {
+        else if (checkmayolandCharacterSheets(charURL)) {
+            var s = document.createElement("script");
+            s.src = "https://" + charURL.hostname + "/mayoland/display?ajax=1&callback=OCLmayoland&key=" + (new URLSearchParams(charURL.search).get('key'));
+            OCLmayoland = (data) => {
+                var data2 = {
+                    "kind": "character",
+                    "data": {
+                        "name": data.base.name || data.base.nameKana,
+                        "memo": "アイテム\n",
+                        "externalUrl": charURL.href,
+                        "initiative": 0,
+                        "status": [
+                            {
+                                "label": "HP",
+                                "value": data.subpower.hp.current,
+                                "max": data.subpower.hp.max
+                            },
+                            {
+                                "label": "気力",
+                                "value": 0,
+                                "max": data.subpower.vessel.max
+                            },
+                            {
+                                "label": "配下",
+                                "value": 0,
+                                "max": data.subpower.subordinates.max
+                            },
+                            {
+                                "label": "回避",
+                                "value": data.subpower.dodge.current,
+                                "max": 0
+                            },
+                        ],
+                        "params": [
+                            {
+                                "label": "才覚",
+                                "value": data.power.life.total
+                            },
+                            {
+                                "label": "魅力",
+                                "value": data.power.culture.total
+                            },
+                            {
+                                "label": "探索",
+                                "value": data.power.security.total
+                            },
+                            {
+                                "label": "武勇",
+                                "value": data.power.military.total
+                            }
+                        ],
+                        "active": true, "secret": false, "invisible": false, "hideStatus": false,
+                        "commands": ""
+                    }
+                };
+                for (let index = 1; index <= 6; index++) {
+                    data2.data.memo += index+".";
+                    data2.data.memo += (data["equip" + index]?data["equip" + index]:"")+"\n";
+                }
+                data2.data.memo+="配下.";
+                data2.data.memo+=data.equip7?data.equip7:"";
+                data2.data.commands = [
+                    "//能力値判定　xに目標値を記入",
+                    "2MK+{才覚}+0>=x　才覚判定",
+                    "2MK+{魅力}+0>=x　魅力判定",
+                    "2MK+{探索}+0>=x　探索判定",
+                    "2MK+{武勇}+0>=x　武勇判定",
+                    "",
+                    "//情報収集",
+                    "IG　情報収集表",
+                    "RMS　ランダムマップ選択表",
+                    "",
+                    "//王国フェイズ",
+                    "RT　視察表",
+                    "TT　道中表",
+                    "",
+                    "//冒険フェイズ",
+                    "TBT　才覚休憩表",
+                    "CBT　魅力休憩表",
+                    "SBT　探索休憩表",
+                    "VBT　武勇休憩表",
+                    "THT　才覚ハプニング表",
+                    "CHT　魅力ハプニング表",
+                    "SHT　探索ハプニング表",
+                    "VHT　武勇ハプニング表",
+                    "",
+                    "NT　交渉表",
+                    "SE　特殊遭遇表",
+                    "",
+                    "//戦闘",
+                    "CAT　痛打表",
+                    "FWT　致命傷表",
+                    "CFT　戦闘ファンブル表",
+                    "",
+                    "//終了フェイズ",
+                    "KCT　王国変動表"
+                ].join("\n");
+
+                if (document.getElementById('paramAdd').checked) {
+                    data2.data.commands += (
+                        [
+                            "//ステータス操作",
+                            ":HP+",
+                            ":HP-",
+                            ":気力+",
+                            ":気力-",
+                            ":配下+",
+                            ":配下-",
+                        ].join("\n")
+                    );
+                }
+                var Text = JSON.stringify(data2);
+                document.forms.resultform.myresult.value = Text;
+                navigator.clipboard.writeText(Text)
+                    .then(function () {
+                        alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)');
+                    })
+                    .catch(err => {
+                        alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
+                    });
+                //JSONP処理コールバック関数定義終了
+            };
+            document.body.appendChild(s);
+        } else if (checkYutorize(charURL)) {
             var s = document.createElement("script");
             s.src = charURL + '&mode=json&callback=OCLYutoDX3';
             OCLYutoDX3 = async (data) => {
@@ -522,24 +660,33 @@
         }
         else {
             //URLが間違っている場合
-            errlist=[
-                        "なんだ！？(^^)なんだ！？(^^)\nどこのURLなんだ？",
-                        "うぐっ不明なURLすぎだァ～～！！\n浮上するぞォ！！",
-                        "ｶﾞﾗﾗﾗ←URLを開ける\nわ…わりぃ!!!!//////\nﾋﾟｼｬﾝ!!!!←URLを閉める\n(でも……なんか知らんURL見た//////)",
-                        "おまｯ!?なんてURLしてんだ!?\nんなURLでコマ作成機ん中を歩き回るな（怒）",
-                        "ｽﾞﾁﾞｭｯｸﾞﾁｭ、ｽﾞﾌﾟﾝｯ!!(エラーが突き上げる)",
-                        "決めたんやボクエラーになる\nエラーになって変えたる\n乱菊が泣かんでもええようにしたる",
-                    ]
-            myrand = Math.floor(Math.random() * errlist.length);
-            alert(errlist[myrand]);
+            errURL()
         }
     };
-
+    function errURL() {
+        //URLが間違っている場合
+        errlist = [
+            "なんだ！？(^^)なんだ！？(^^)\nどこのURLなんだ？",
+            "うぐっ不明なURLすぎだァ～～！！\n浮上するぞォ！！",
+            "ｶﾞﾗﾗﾗ←URLを開ける\nわ…わりぃ!!!!//////\nﾋﾟｼｬﾝ!!!!←URLを閉める\n(でも……なんか知らんURL見た//////)",
+            "おまｯ!?なんてURLしてんだ!?\nんなURLでコマ作成機ん中を歩き回るな（怒）",
+            "ｽﾞﾁﾞｭｯｸﾞﾁｭ、ｽﾞﾌﾟﾝｯ!!(URL由来のエラーが突き上げる)",
+            "決めたんやボクエラーになる\nエラーになって変えたる\nURL間違えた乱菊が泣かんでもええようにしたる",
+            "大丈夫。こわくないよ。おいで。\nお姉さんと一緒にURL確認しよう。",
+            "あ、オレや…URLエラーや…",
+            "爺ちゃんが出てきたURLを「こんなもんこうじゃ」って焼酎に付けて\n「怖いじゃろワシは怖ない」\nとか言いながら食ってエラー吐いて救急車騒ぎになったの、\n今でも意味わかんないんだよな。",
+        ]
+        myrand = Math.floor(Math.random() * errlist.length);
+        alert(errlist[myrand]);
+    }
     function checkDXCharacterSheets(url) {
         return (url.hostname === "character-sheets.appspot.com" && url.pathname.match(/\/dx3\/edit\.html$/));
     }
     function checkSatasupeCharacterSheets(url) {
         return (url.hostname === "character-sheets.appspot.com" && url.pathname.match(/\/satasupe\/edit\.html$/));
+    }
+    function checkmayolandCharacterSheets(url) {
+        return (url.hostname === "character-sheets.appspot.com" && url.pathname.match(/\/mayoland\/edit\.html$/));
     }
     function checkYutorize(url) {
         return ((url.hostname === "yutorize.2-d.jp" || document.getElementById('YutoLimiter').checked) && url.pathname.match(/\/dx3rd\//));
@@ -602,8 +749,8 @@
         //console.log(result.parameters !== []);
         return result;
     }
-    
-    function alert_on_move(){
+
+    function alert_on_move() {
         return confirm("別のページに移動するけどお前？")
     }
 </script>
