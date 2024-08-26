@@ -56,9 +56,7 @@
 
     </p>
     <p>
-        htmlの知識もCSSの知識もないんでしょっぱい画面だけど<br>
-        「たまにはこんな　軽い画面もいいもんだろう？」<br>
-        牛窓の風は　そう俺にささやきかけた<br>
+        htmlの知識もCSSの知識もないんでしょっぱい画面だ 笑ってくれ(^^)<br>
         できるシャンカーは<a href="https://github.com/ShanShan1129/tools/pulls" onClick="return alert_on_move()">プルリクくれ</a>
     </p>
     <p>
@@ -70,18 +68,7 @@
     </p>
     <h3>変更履歴</h3>
     <p>
-        ver1.10<br>
-        サタスペ関連更新<br>
-        巨体、超人、虚弱、散漫、借金大王のステータス修正を自動的に反映するように<br>
-        メモ書きとして書いてあったとしても反映されちゃうのでその時は…笑ってくれ(^^)<br>
-        またバグがある可能性濃厚なので上手くコマが作れなかったら<a href="./DXCharacterVer1.9.1.html"
-        onClick="return alert_on_move()">ver1.9.1</a>を使ってくれ(^^)<br>
-        似たような仕組みでまよキンのスキルによるステータス補正も反映できるかもだよ<br>
-        ンマーこっちはデータ量多すぎて作業量的にキツイので着手予定は未定<br>
-        代替案として説明書きに{ステータス名}:{上昇値}とあればそれを反映とか考えてるけど<br>
-        フォーマットわからなくて頭おかしくなりそうだけど<br>
-        <a href="./DXCharacterVer1.9.1.html"
-        onClick="return alert_on_move()">ver1.9.1</a><br>
+        ver1.9.1<br>
         まよキン対応更新　国も対応したけどおれ？<br>
         ver1.9.0<br>
         そろそろまよキン対応するか　ゾロもランドメイカーの一族<br>
@@ -158,7 +145,6 @@
         if (!navigator.clipboard) {
             alert("あークリップボードへのアクセス権なくて鬱");
         }
-        console.log("キャラシ解析開始・皇")
         if (checkDXCharacterSheets(charURL)) {
             //https://character-sheets.appspot.com/dx3/edit.html?key=ahVzfmNoYXJhY3Rlci1zaGVldHMtbXByFwsSDUNoYXJhY3RlckRhdGEYr5j-ygUM
             var s = document.createElement("script");
@@ -366,47 +352,7 @@
         else if (checkSatasupeCharacterSheets(charURL)) {
             var s = document.createElement("script");
             s.src = "https://" + charURL.hostname + "/satasupe/display?ajax=1&callback=OCLSatasupe&key=" + (new URLSearchParams(charURL.search).get('key'));
-            satasupe_addtion_alert=""
-            console.log("satasupe")
             OCLSatasupe = (data) => {
-                var karmaset=new Set();
-
-                function myIncludes(str,name){
-                    console.log(str)
-                    return str && str.includes(name);
-                }
-                function checkTalent(name) {
-                    ret = data.karma.some(value => myIncludes(value.talent.name,name))
-                    if(ret){
-                        karmaset.add("【"+name+"】");
-                    }
-                    return ret
-                }
-                function checkPrice(name) {
-                    ret = data.karma.some(value => myIncludes(value.price.name,name))
-                    if(ret){
-                        karmaset.add("【"+name+"】");
-                    }
-                    return ret
-                }
-                //肉体点修正異能代償
-                BP = 0;
-                BP += Number(checkTalent("巨体") ? data.base.gift.body.value : 0);
-                BP += Number(checkTalent("超人") ? data.base.gift.body.value : 0);
-                BP += Number(checkPrice("虚弱") ? -2 : 0);
-                
-                //精神点修正異能代償
-                MP = 0;
-                MP += Number(checkTalent("超人") ? data.base.gift.body.value : 0);
-                MP += Number(checkPrice("散漫") ? -2 : 0);
-                //サイフ修正 
-                SPmodfy = 0;
-                SPmodfy += Number(checkPrice("借金大王") ? -1 : 0);
-                if(karmaset.size){
-                    satasupe_addtion_alert+="\n"
-                    satasupe_addtion_alert+=Array.from(karmaset).reduce((acc,cur)=> acc+cur,"")
-                    satasupe_addtion_alert+="効果反映"
-                }
                 var data2 = {
                     "kind": "character",
                     "data": {
@@ -416,18 +362,18 @@
                         "status": [
                             {
                                 "label": "肉体点",
-                                "value": 10+BP,
-                                "max": 10+BP
+                                "value": 10,
+                                "max": 10
                             },
                             {
                                 "label": "精神点",
-                                "value": 10+MP,
-                                "max": 10+MP
+                                "value": 10,
+                                "max": 10
                             },
                             {
                                 "label": "サイフ",
-                                "value": Number(data.base.abl.life.value) - Number(data.cond.wallet.value)+Number(SPmodfy),
-                                "max": Number(data.base.abl.life.value)+Number(SPmodfy)
+                                "value": Number(data.base.abl.life.value) - Number(data.cond.wallet.value),
+                                "max": data.base.abl.life.value
                             },
                             {
                                 "label": "性業値",
@@ -477,20 +423,19 @@
                         "commands": "◆行為判定(nに難易度を入れる)\n({犯罪}+0)R>=n[,1] 犯罪 \n({生活}+0)R>=n[,1] 生活\n({恋愛}+0)R>=n[,1] 恋愛\n({教養}+0)R>=n[,1] 教養\n({戦闘}+0)R>=n[,1] 戦闘\n({肉体}+0)R>=n[1,1] 肉体\n({精神}+0)R>=n[1,1] 精神\nSR{性業値} [性業値判定]\n\n◆戦闘\n({攻撃力}+0)R>=n[,1]\n\n<セーブ/飛ぶ>\n({肉体}+0)R>=n[,1] [セーブ判定]\n({肉体}+0)R>=n[1,2] [跳ぶ]\n\n<ファンブル他>\nFumbleT [命中ファンブル]\nFatalT [致命傷表]\nEnterT [登場表]\nBudTT [バッドトリップ表]\n\n<その後表>\nAfterT <その後表>"
                     }
                 };
-                
+
                 var Text = JSON.stringify(data2);
                 document.forms.resultform.myresult.value = Text;
                 navigator.clipboard.writeText(Text)
                     .then(function () {
-                        alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)'+satasupe_addtion_alert);
+                        alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)');
                     })
                     .catch(err => {
-                        alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)'+satasupe_addtion_alert);
+                        alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
                     });
                 //JSONP処理コールバック関数定義終了
             };
             document.body.appendChild(s);
-            console.log("start satasupe")
         } else if (checkmayolandCharacterSheets(charURL)) {
             var s = document.createElement("script");
             s.src = "https://" + charURL.hostname + "/mayoland/display?ajax=1&callback=OCLmayoland&key=" + (new URLSearchParams(charURL.search).get('key'));
