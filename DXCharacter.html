@@ -505,22 +505,22 @@
                         "status": [
                             {
                                 "label": "HP",
-                                "value": data.subpower.hp.current,
-                                "max": data.subpower.hp.max
+                                "value": eval(data.subpower.hp.current),
+                                "max": eval(data.subpower.hp.max)
                             },
                             {
                                 "label": "気力",
                                 "value": 0,
-                                "max": data.subpower.vessel.max
+                                "max": eval(data.subpower.vessel.max)
                             },
                             {
                                 "label": "配下",
                                 "value": 0,
-                                "max": data.subpower.subordinates.max
+                                "max": eval(data.subpower.subordinates.max)
                             },
                             {
                                 "label": "回避",
-                                "value": data.subpower.dodge.current,
+                                "value": eval(data.subpower.dodge.current),
                                 "max": 0
                             },
                         ],
