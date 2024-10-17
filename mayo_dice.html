@@ -24,7 +24,7 @@
     深夜テンションの適当な実装であることを教える<br>
     バグがあったら…教えてくれ(^^)<br>
     <details>
-    <summary>更新履歴</summary>
+        <summary>更新履歴</summary>
         ver1.1<br>
         ・絶対成功、絶対失敗を考慮するように<br>
         ver1.0<br>
@@ -51,17 +51,20 @@
             return
         }
         var res = 0;
-        if (nanido - kotei < 2) {//固定値だけで確定成功
-            res = 1
-        } else if (nanido - kotei >= 13) {//絶対成功頑張ってくれ(^^)
-            res = 0
+        if (nanido - kotei <= 2) {//固定値だけで確定成功 ただし絶対失敗を考慮
+            res = 1 - table2[n - 2]
+            res = res * 100
+            res = Math.round(res * 10) / 10
+        } else if (nanido - kotei >= 12) {//絶対成功頑張ってくれ(^^)
+            res = 0 + table12[n - 2]
+            res = res * 100
+            res = Math.round(res * 10) / 10
         } else {
             res = table[nanido - kotei - 2][n - 2]
+            res = res * 100
+            res = Math.round(res * 10) / 10
         }
         moji = "お前に教える<br>" + n + "mk+" + kotei + ">=" + nanido + "<br>成功確率…"
-        res = res - table2[n - 2]
-        res = res * 100
-        res = Math.round(res * 10) / 10
         moji += "" + res + "%！"
         moji += "<br>絶対成功確率…" + Math.round(table12[n - 2] * 100 * 10) / 10 + "%！"
         moji += "<br>絶対失敗確率…" + Math.round(table2[n - 2] * 100 * 10) / 10 + "%！"
