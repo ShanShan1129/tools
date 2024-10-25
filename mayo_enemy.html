@@ -37,7 +37,7 @@ table={"be28c29a8a9932965913394604827acd12c0add5434b4952c6d1ef004cd50948":"U2Fsd
     function calc() {
         var query = document.getElementById("t1").value;
         var key = document.getElementById("t2").value;
-        console.log(CryptoJS.SHA256(nanido).toString(CryptoJS.enc.Hex));
+        console.log(CryptoJS.SHA256(query).toString(CryptoJS.enc.Hex));
         //暗号化キー:"testkey"を用いて暗号化
         // des = CryptoJS.DES.encrypt(table[nanido], kotei);
         // console.log('Source :' + src);
