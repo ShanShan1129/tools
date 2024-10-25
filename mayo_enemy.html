@@ -1,0 +1,88 @@
+<html>
+
+<head>
+    <title>mayotest</title>
+</head>
+
+<body bgcolor="#d8dbe0">
+    <form name="form1">
+
+        <font size=5 color=red>mayotest</font><br>
+        <br>
+        テスト用
+        <br>
+        モンスター名……<input type="text" id="t1" size="10" value="小鬼"/>　<br />
+        FT4文字…………<input type="text" id="t2" size="10" value="ゴブリン"/>　<br />
+
+
+        <input type="button" value="生成・皇" onclick="calc()" style="background-color:silver" /><br />
+    </form>
+    <form name="resultform">
+        <textarea name="myresult" class="myoutputbox" placeholder="結果" cols="26"
+            rows="3"></textarea>
+    </form>
+    <br /><br />
+    深夜テンションの適当な実装であることを教える<br>
+    バグがあったら…教えてくれ(^^)<br>
+    <details>
+        <summary>更新履歴</summary>
+
+    </details>
+</body>
+<script src="
+https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js
+"></script>
+<script type="text/javascript">
+table={"be28c29a8a9932965913394604827acd12c0add5434b4952c6d1ef004cd50948":"U2FsdGVkX19dHh5bV3n9v5b2XLEXBJ3vGmHhQdFKqOT1J8i8DBl0PA=="}
+    function calc() {
+        var query = document.getElementById("t1").value;
+        var key = document.getElementById("t2").value;
+        console.log(CryptoJS.SHA256(nanido).toString(CryptoJS.enc.Hex));
+        //暗号化キー:"testkey"を用いて暗号化
+        // des = CryptoJS.DES.encrypt(table[nanido], kotei);
+        // console.log('Source :' + src);
+        // console.log('Crypto :' + des);
+    
+        //暗号化キー:"testkey"を用いて復号化
+        query=CryptoJS.SHA256(query).toString(CryptoJS.enc.Hex)
+        var decrypt = CryptoJS.DES.decrypt(table[query], key).toString(CryptoJS.enc.Utf8);
+        document.forms.resultform.myresult.value = decrypt;
+    }
+    function err() {
+        //入力が間違っている場合
+        errlist = [
+            "なんだ！？(^^)なんだ！？(^^)\nどこの入力を間違えたんだ？",
+            "うぐっエラーな入力すぎだァ～～！！\n浮上するぞォ！！",
+            "ｶﾞﾗﾗﾗ←入力を確認する\nわ…わりぃ!!!!//////\nﾋﾟｼｬﾝ!!!!←処理を閉める\n(でも……なんかヘンな入力見た//////)",
+            "おまｯ!?なんて数値してんだ!?\nんな数値で計算機ん中を歩き回るな（怒）",
+            "ｽﾞﾁﾞｭｯｸﾞﾁｭ、ｽﾞﾌﾟﾝｯ!!(数値由来のエラーが突き上げる)",
+            "決めたんやボクエラーになる\nエラーになって変えたる\n入力間違えた乱菊が泣かんでもええようにしたる",
+            "大丈夫。こわくないよ。おいで。\nお姉さんと一緒に入力値確認しよう。",
+            "あ、オレや…数値エラーや…",
+            "爺ちゃんが出てきた確率を「こんなもんこうじゃ」って焼酎に付けて\n「怖いじゃろワシは怖ない」\nとか言いながら食ってエラー吐いて救急車騒ぎになったの、\n今でも意味わかんないんだよな。",
+            "共に数値を確認しよう\n同星達よ……!!",
+            "は、入力値のミスということか……そう簡単にはいかないか……。",
+            "明日になったら　数値確認しようよ",
+            "今日 お前には\"エラー\"が出ている",
+            "これって……\nああ\n\n数値のエラーだ"
+        ]
+        myrand = Math.floor(Math.random() * errlist.length);
+        alert(errlist[myrand]);
+    }
+
+</script>
+<style>
+    .gaming {
+        /* 横長で虹色を作る */
+        background: linear-gradient(to right, Magenta, yellow, Cyan, Magenta) 0% center/200%;
+        animation: gaming 2s linear infinite;
+    }
+
+    @keyframes gaming {
+
+        /* backgroundを移動させる */
+        100% {
+            background-position-x: 200%;
+        }
+    }
+</style>
