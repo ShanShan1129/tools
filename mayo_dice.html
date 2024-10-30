@@ -74,7 +74,7 @@
         }
         moji = "お前に教える<br>" + n + "mk+" + kotei + ">=" + nanido + "<br>成功確率…"
         moji += "" + res + "%！"
-        if (document.getElementById('deadeye').checked && nanido - kotei >= 11) {
+        if (document.getElementById('deadeye').checked) {
             moji += "<br>絶対成功確率…" + Math.round(table11[n - 2] * 100 * 10) / 10 + "%！"
         } else {
             moji += "<br>絶対成功確率…" + Math.round(table12[n - 2] * 100 * 10) / 10 + "%！"
