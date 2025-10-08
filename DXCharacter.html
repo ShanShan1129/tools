@@ -70,6 +70,9 @@
     </p>
     <h3>変更履歴</h3>
     <p>
+        ver1.11<br>
+        DXの技能値の()部分の扱いミスしていたのを修正<br>
+        ごべーーーーーーーん！括弧は修正値じゃなくて修正後の値だったァーー！<br>
         ver1.10<br>
         サタスペ関連更新<br>
         巨体、超人、虚弱、散漫、借金大王のステータス修正を自動的に反映するように<br>
@@ -233,12 +236,20 @@
                     ["tyo", "調達"]
                 ]
                 skil_array.forEach(n => {
-                    alv = data.skills[n[0]].A.lv ? Number(data.skills[n[0]].A.lv) : 0;
-                    dlv = data.skills[n[0]].D.dlv ? Number(data.skills[n[0]].D.dlv) : 0;
-                    Lv = Number(data.skills[n[0]].A.lv) + Number(data.skills[n[0]].D.dlv);
-                    skill_name = n[1];
-                    param = { "label": skill_name, "value": String(Lv) };
-                    data2.data.params.push(param)
+                    // alv = data.skills[n[0]].A.lv ? Number(data.skills[n[0]].A.lv) : 0;
+                    // dlv = data.skills[n[0]].D.dlv ? Number(data.skills[n[0]].D.dlv) : 0;
+                    Lv=null
+                    if (Number(data.skills[n[0]].D.dlv)){
+                        Lv=Number(data.skills[n[0]].D.dlv)
+                    }else if(Number(data.skills[n[0]].A.lv)){
+                        Lv=Number(data.skills[n[0]].A.lv)
+                    }
+                    // Lv = Number(data.skills[n[0]].A.lv) + Number(data.skills[n[0]].D.dlv);
+                    if(Lv != null){
+                        skill_name = n[1];
+                        param = { "label": skill_name, "value": String(Lv) };
+                        data2.data.params.push(param)
+                    }
                 });
                 unten = "";
                 geijutu = "";
@@ -250,7 +261,12 @@
                         alv = alv ? Number(alv) : 0;
                         dlv = n.dlv1;
                         dlv = dlv ? Number(dlv) : 0;
-                        param = { "label": "運転:" + n.name1, "value": String(alv + dlv) };
+                        if (dlv>0){
+                            Lv=dlv
+                        }else{
+                            Lv=alv
+                        }
+                        param = { "label": "運転:" + n.name1, "value": String(Lv) };
                         data2.data.params.push(param)
                         unten += "({肉体}+{侵蝕率B})dx+{運転:" + n.name1 + "}　〈運転:" + n.name1 + "〉\n"
                     }
@@ -259,7 +275,12 @@
                         alv = alv ? Number(alv) : 0;
                         dlv = n.dlv2;
                         dlv = dlv ? Number(dlv) : 0;
-                        param = { "label": "芸術:" + n.name2, "value": String(alv + dlv) };
+                        if (dlv>0){
+                            Lv=dlv
+                        }else{
+                            Lv=alv
+                        }
+                        param = { "label": "芸術:" + n.name2, "value": String(Lv) };
                         data2.data.params.push(param)
                         geijutu += "({感覚}+{侵蝕率B})dx+{芸術:" + n.name2 + "}　〈芸術:" + n.name2 + "〉\n"
                     }
@@ -268,7 +289,12 @@
                         alv = alv ? Number(alv) : 0;
                         dlv = n.dlv3;
                         dlv = dlv ? Number(dlv) : 0;
-                        param = { "label": "知識:" + n.name3, "value": String(alv + dlv) };
+                        if (dlv>0){
+                            Lv=dlv
+                        }else{
+                            Lv=alv
+                        }
+                        param = { "label": "知識:" + n.name3, "value": String(Lv) };
                         data2.data.params.push(param)
                         tisiki += "({精神}+{侵蝕率B})dx+{知識:" + n.name3 + "}　〈知識:" + n.name3 + "〉\n"
                     }
@@ -277,7 +303,12 @@
                         alv = alv ? Number(alv) : 0;
                         dlv = n.dlv4;
                         dlv = dlv ? Number(dlv) : 0;
-                        param = { "label": "情報:" + n.name4, "value": String(alv + dlv) };
+                        if (dlv>0){
+                            Lv=dlv
+                        }else{
+                            Lv=alv
+                        }
+                        param = { "label": "情報:" + n.name4, "value": String(Lv) };
                         data2.data.params.push(param)
                         jouhou += "({社会}+{侵蝕率B})dx+{情報:" + n.name4 + "}　〈情報:" + n.name4 + "〉\n"
                     }
