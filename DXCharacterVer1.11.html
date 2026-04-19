@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>コマ作成機</title>
+</head>
+
+<body bgcolor="#d8dbe0">
+    <h1>コマ作成機</h1>
+    <p>
+        キャラシサイトのコマ生成機だ<br>
+        飲んでくれ！<br>
+        勝手にクリップボードにコピーしてくれる機能付き<br>
+        <a href="https://character-sheets.appspot.com/dx3/edit.html" onClick="return alert_on_move()">いつものDXのサイト</a>とか<a
+            href="https://yutorize.2-d.jp/ytsheet/dx3rd/" onClick="return alert_on_move()">DXのゆとシ</a>とかに対応してるのをｵｯｼｪﾙ<br>
+        <a href="https://character-sheets.appspot.com/satasupe/edit.html"
+            onClick="return alert_on_move()">サタスペ</a>にも対応始めました…だろ？
+    </p>
+    <form name="myform" onsubmit="makeDXCharacter(); return false;">
+        <input name="URLinput" type="text" class="myinputbox" value="" placeholder="ここにキャラシのURLをコピペしてくれ(^^)" />
+        <input name="btn" type="button" value="コマ作成・皇" onclick="makeDXCharacter()" />
+        <label><input type="checkbox" id="paramAdd">パラメータ操作チャパレ</label>
+        <label><input type="checkbox" id="YutoLimiter">公式以外のゆとシ</label>
+    </form>
+    <form name="resultform">
+        <textarea name="myresult" class="myoutputbox" placeholder="クリップボードへの自動転送うまくいかない場合はここにでたやつをコピペしてくれ(^^)" cols="26"
+            rows="3"></textarea>
+    </form>
+    <p>
+        Dロイスがあるキャラはロイス数の最大値とか調整されるけど<br>
+        Dロイスの行は種類に"D"とか"Dロイス"とか書いておくことを…勧める…<br>
+        <br>
+        サタスペの場合サイフなど卓跨いでも回復しないリソースがあることを教える<br>
+        トラウマついてたら精神点の最大値減ったりするな　ルフィ<br>
+        でもこの生成機はその辺あんまり考えないので修正は任せる…だろ？<br>
+        <br>
+        ゆとシでデフォのチャットパレットを使ってる場合、パラメータも含めて自分で引っ張って来る必要があることを教える
+    <details>
+        <summary>めんどいけどお前？</summary>
+        <details>
+            <summary>🥺</summary>
+            めんどかったら下のどうしてもにチェック入れると引っ張れることも教える<br>
+            ただセキュリティリスクが完全に無くはない無法なので、<br>
+            気になるなら手動でチャパレ引っ張ればいいんじゃないか？(業界関係者)<br>
+            <form name="myform" onsubmit="makeDXCharacter(); return false;">
+                <label><input type="checkbox" id="corsLimiter">どうしても</label>
+            </form>
+            逆に言えばどうしてもにチェック入れなければ何も問題ないけど<br>
+            ンマーそもそもゆとシはコマ作成機能元からあるんだがな<br>
+            <a href="https://codetabs.com/cors-proxy/cors-proxy.html"
+                onClick="return alert_on_move()">技術的なことを言えばここ使ってるだけだ 笑ってくれ(^^)</a>
+        </details>
+    </details>
+    <br>
+
+    </p>
+    <p>
+        htmlの知識もCSSの知識もないんでしょっぱい画面だけど<br>
+        「たまにはこんな　軽い画面もいいもんだろう？」<br>
+        牛窓の風は　そう俺にささやきかけた<br>
+        できるシャンカーは<a href="https://github.com/ShanShan1129/tools/pulls" onClick="return alert_on_move()">プルリクくれ</a>
+    </p>
+    <p>
+        結局javascriptでいろんなとこのJSONのAPI叩いてるだけなのを教える　API対応クソありがてェだろ<br>
+        また機能について要望があれば<a href="https://ccfolia.com/rooms/9FtNIhx-X"
+            onClick="return alert_on_move()">ログ収集卓</a>で受け付ける…だろ？<br>
+        このシステムのこのキャラシサイト対応してくれ(^^)とかも受け付ける…だろ？<br>
+        おれがやったことないシステムはヒアリング濃厚になるかもしれないがその時は…笑ってくれ(^^)
+    </p>
+    <h3>変更履歴</h3>
+    <p>
+        ver1.11<br>
+        DXの技能値の()部分の扱いミスしていたのを修正<br>
+        ごべーーーーーーーん！括弧は修正値じゃなくて修正後の値だったァーー！<br>
+        ver1.10<br>
+        サタスペ関連更新<br>
+        巨体、超人、虚弱、散漫、借金大王のステータス修正を自動的に反映するように<br>
+        メモ書きとして書いてあったとしても反映されちゃうのでその時は…笑ってくれ(^^)<br>
+        またバグがある可能性濃厚なので上手くコマが作れなかったら<a href="./DXCharacterVer1.9.1.html"
+        onClick="return alert_on_move()">ver1.9.1</a>を使ってくれ(^^)<br>
+        似たような仕組みでまよキンのスキルによるステータス補正も反映できるかもだよ<br>
+        ンマーこっちはデータ量多すぎて作業量的にキツイので着手予定は未定<br>
+        代替案として説明書きに{ステータス名}:{上昇値}とあればそれを反映とか考えてるけど<br>
+        フォーマットわからなくて頭おかしくなりそうだけど<br>
+        <a href="./DXCharacterVer1.9.1.html"
+        onClick="return alert_on_move()">ver1.9.1</a><br>
+        まよキン対応更新　国も対応したけどおれ？<br>
+        ver1.9.0<br>
+        そろそろまよキン対応するか　ゾロもランドメイカーの一族<br>
+        ver1.8<br>
+        サタスペのチャパレで「({犯罪})R>=n[,1] 犯罪」となっていたのを「({犯罪}<font color="#ff0000">+0</font>)R>=n[,1] 犯罪」に<br>
+        あーこれおれがダイス追加するときに何度も計算式間違えたからか<br>
+        DXのチャパレでコンボ欄になんか書いていればそれが反映されるように<br>
+        100%以上のコンボは未記入の部分を100%未満の部分から継承するようになってるけど？<br>
+        ただし表記ゆれの関係でダイスは自分で設定してくれ(^^)　上手いやりかた思いついたらそっちも実装するだろ<br>
+        ver1.7<br>
+        サタスペのキャラシで性業値の設定忘れてた🌈<br>
+        こんな感じにバグがある可能性濃厚なので見つけたら報告してくれると泣いて喜ぶけど<br>
+        ver1.6<br>
+        DXのキャラシで情報:UGNなどの技能レベルが入力されてる奴はチャパレにも反映するように<br>
+        ver1.5<br>
+        DXでDロイスの個数に対応して初期ロイス数減らすように<br>
+        ロイスの種類欄にDが含まれていると反応するけど？<br>
+        ver1.4<br>
+        サタスペ対応始めました…だろ？<br>
+        ver1.3<br>
+        ゆとシで自作チャパレを使っている場合かつチャパレに能力値変数がない場合プリセットのパラメータを使用するように<br>
+        ついでに無法無しでもプリセットが出てくるようになりました<br>
+        ver1.2<br>
+        ゆとシに対応開始
+    </p>
+</body>
+<style>
+    .myinputbox {
+        display: inline-block;
+        width: 100%;
+        font-size: large;
+        max-width: 512px;
+    }
+
+    .myoutputbox {
+        display: inline-block;
+        width: 100%;
+        max-width: 640px;
+    }
+
+    p {
+        display: inline-block;
+        width: 100%;
+    }
+
+    .gaming {
+        /* 横長で虹色を作る */
+        background: linear-gradient(to right, Magenta, yellow, Cyan, Magenta) 0% center/200%;
+        animation: gaming 2s linear infinite;
+    }
+
+    @keyframes gaming {
+
+        /* backgroundを移動させる */
+        100% {
+            background-position-x: 200%;
+        }
+    }
+</style>
+
+<script type="text/javascript">
+    makeDXCharacter = async function () {
+        var charURLstr = document.forms.myform.URLinput.value;
+        var charURL;
+        try {
+            charURL = new URL(charURLstr);
+        } catch (error) {
+            alert("🌈");
+        }
+        if (!charURL.search) {
+            errURL();
+            return;
+        }
+        if (!navigator.clipboard) {
+            alert("あークリップボードへのアクセス権なくて鬱");
+        }
+        console.log("キャラシ解析開始・皇")
+        if (checkDXCharacterSheets(charURL)) {
+            //https://character-sheets.appspot.com/dx3/edit.html?key=ahVzfmNoYXJhY3Rlci1zaGVldHMtbXByFwsSDUNoYXJhY3RlckRhdGEYr5j-ygUM
+            var s = document.createElement("script");
+            s.src = "https://" + charURL.hostname + "/dx3/display?ajax=1&callback=OCLDX3&key=" + (new URLSearchParams(charURL.search).get('key'));
+            OCLDX3 = (data) => {
+                Dlois = data.lois.filter(n => /d|D|Ｄ|ｄ/.test(n.type)).length;
+                console.log("Dロイス数:" + Dlois);
+                var data2 = {
+                    "kind": "character",
+                    "data": {
+                        "name": data.base.name || data.base.nameKana,
+                        "externalUrl": charURL.href,
+                        "initiative": Number(data.subAbility.action.total) || 0,
+                        "status": [
+                            {
+                                "label": "HP",
+                                "value": data.subAbility.hp.total,
+                                "max": data.subAbility.hp.total
+                            },
+                            {
+                                "label": "侵蝕率",
+                                "value": data.subAbility.erotion.total,
+                                "max": data.subAbility.erotion.total
+                            },
+                            {
+                                "label": "ロイス",
+                                "value": (3 - Dlois) > 0 ? 3 - Dlois : 0,
+                                "max": (7 - Dlois) > 0 ? 7 - Dlois : 0
+                            },
+                            {
+                                "label": "侵蝕率B",
+                                "value": "",
+                                "max": ""
+                            },
+                            {
+                                "label": "財産P",
+                                "value": data.subAbility.property.total,
+                                "max": data.subAbility.property.total
+                            }
+                        ],
+                        "params": [
+                            {
+                                "label": "肉体",
+                                "value": data.baseAbility.body.total
+                            },
+                            {
+                                "label": "感覚",
+                                "value": data.baseAbility.sense.total
+                            },
+                            {
+                                "label": "精神",
+                                "value": data.baseAbility.mind.total
+                            },
+                            {
+                                "label": "社会",
+                                "value": data.baseAbility.society.total
+                            }
+                        ],
+                        "active": true, "secret": false, "invisible": false, "hideStatus": false,
+                        "commands": ""
+                    }
+                };
+                //技能レベル設定
+                skil_array = [
+                    ["hak", "白兵"],
+                    ["sha", "射撃"],
+                    ["rc", "RC"],
+                    ["kou", "交渉"],
+                    ["kai", "回避"],
+                    ["tik", "知覚"],
+                    ["isi", "意志"],
+                    ["tyo", "調達"]
+                ]
+                skil_array.forEach(n => {
+                    // alv = data.skills[n[0]].A.lv ? Number(data.skills[n[0]].A.lv) : 0;
+                    // dlv = data.skills[n[0]].D.dlv ? Number(data.skills[n[0]].D.dlv) : 0;
+                    Lv=null
+                    if (Number(data.skills[n[0]].D.dlv)){
+                        Lv=Number(data.skills[n[0]].D.dlv)
+                    }else if(Number(data.skills[n[0]].A.lv)){
+                        Lv=Number(data.skills[n[0]].A.lv)
+                    }
+                    // Lv = Number(data.skills[n[0]].A.lv) + Number(data.skills[n[0]].D.dlv);
+                    if(Lv != null){
+                        skill_name = n[1];
+                        param = { "label": skill_name, "value": String(Lv) };
+                        data2.data.params.push(param)
+                    }
+                });
+                unten = "";
+                geijutu = "";
+                tisiki = "";
+                jouhou = "";
+                data.skills.B.forEach(n => {
+                    if (n.name1) {
+                        alv = n.lv1;
+                        alv = alv ? Number(alv) : 0;
+                        dlv = n.dlv1;
+                        dlv = dlv ? Number(dlv) : 0;
+                        if (dlv>0){
+                            Lv=dlv
+                        }else{
+                            Lv=alv
+                        }
+                        param = { "label": "運転:" + n.name1, "value": String(Lv) };
+                        data2.data.params.push(param)
+                        unten += "({肉体}+{侵蝕率B})dx+{運転:" + n.name1 + "}　〈運転:" + n.name1 + "〉\n"
+                    }
+                    if (n.name2) {
+                        alv = n.lv2;
+                        alv = alv ? Number(alv) : 0;
+                        dlv = n.dlv2;
+                        dlv = dlv ? Number(dlv) : 0;
+                        if (dlv>0){
+                            Lv=dlv
+                        }else{
+                            Lv=alv
+                        }
+                        param = { "label": "芸術:" + n.name2, "value": String(Lv) };
+                        data2.data.params.push(param)
+                        geijutu += "({感覚}+{侵蝕率B})dx+{芸術:" + n.name2 + "}　〈芸術:" + n.name2 + "〉\n"
+                    }
+                    if (n.name3) {
+                        alv = n.lv3;
+                        alv = alv ? Number(alv) : 0;
+                        dlv = n.dlv3;
+                        dlv = dlv ? Number(dlv) : 0;
+                        if (dlv>0){
+                            Lv=dlv
+                        }else{
+                            Lv=alv
+                        }
+                        param = { "label": "知識:" + n.name3, "value": String(Lv) };
+                        data2.data.params.push(param)
+                        tisiki += "({精神}+{侵蝕率B})dx+{知識:" + n.name3 + "}　〈知識:" + n.name3 + "〉\n"
+                    }
+                    if (n.name4) {
+                        alv = n.lv4;
+                        alv = alv ? Number(alv) : 0;
+                        dlv = n.dlv4;
+                        dlv = dlv ? Number(dlv) : 0;
+                        if (dlv>0){
+                            Lv=dlv
+                        }else{
+                            Lv=alv
+                        }
+                        param = { "label": "情報:" + n.name4, "value": String(Lv) };
+                        data2.data.params.push(param)
+                        jouhou += "({社会}+{侵蝕率B})dx+{情報:" + n.name4 + "}　〈情報:" + n.name4 + "〉\n"
+                    }
+                });
+
+                combo_dice = [];
+
+                data.combo.forEach(n => {
+                    tmp = n.under100;
+                    console.log(n.name)
+                    console.log(Object.keys(tmp).reduce((acc, key) => acc + (tmp[key] ? 1 : 0), 0))
+
+                    if (Object.keys(tmp).reduce((acc, key) => acc + (tmp[key] ? 1 : 0), 0) > 0) {
+                        console.log(n.name)
+                        combo_dice.push([
+                            `//100%未満`,
+                            `${n.name}：${tmp.combination}`,
+                            `${tmp.timing} / ${tmp.type} / ${tmp.judge} / ${tmp.target} / ${tmp.range}`,
+                            `:侵蝕率+${tmp.cost}`
+                        ].join("\n"));
+                    }
+                    tmp = n.over100;
+                    if (Object.keys(tmp).reduce((acc, key) => acc + (tmp[key] ? 1 : 0), 0) > 0) {
+                        combo_dice.push([
+                            `//100%以上`,
+                            `${n.name}：` + tmp.combination || n.under100.combination + ``,
+                            `` + (tmp.timing || n.under100.timing) + ` / ` + (tmp.type || n.under100.type) + ` / ` + (tmp.judge || n.under100.judge) + ` / ` + (tmp.target || n.under100.target) + ` / ` + (tmp.range || n.under100.range) + ``,
+                            `:侵蝕率+${tmp.cost}`
+                        ].join("\n"));
+                    }
+                });
+
+                data2.data.commands = [
+                    "◆汎用チャットパレット",
+                    "//上昇",
+                    "{侵蝕率}+1d10　登場/リザレクト",
+                    "{侵蝕率}+nd10　ジェネシフト",
+                    "{侵蝕率}+2d10　衝動判定",
+                    "",
+                    "//判定用",
+                    "({肉体}+{侵蝕率B})dx　【肉体】",
+                    "({感覚}+{侵蝕率B})dx　【感覚】",
+                    "({精神}+{侵蝕率B})dx　【精神】",
+                    "({社会}+{侵蝕率B})dx　【社会】",
+                    "",
+                    "({肉体}+{侵蝕率B})dx+{白兵}　〈白兵〉",
+                    "({肉体}+{侵蝕率B})dx+{回避}　〈回避〉",
+                    "" + unten + "({感覚}+{侵蝕率B})dx+{射撃}　〈射撃〉",
+                    "({感覚}+{侵蝕率B})dx+{知覚}　〈知覚〉",
+                    "" + geijutu + "({精神}+{侵蝕率B})dx+{RC}　〈RC〉",
+                    "({精神}+{侵蝕率B})dx+{意志}　〈意志〉",
+                    "" + tisiki + "({社会}+{侵蝕率B})dx+{交渉}　〈交渉〉",
+                    "({社会}+{侵蝕率B})dx+{調達}　〈調達〉",
+                    "" + jouhou + "",
+
+                    "//命中+コンボ",
+                    combo_dice.join("\n"),
+                    "({}+{侵蝕率B})dx8　99↓",
+                    "({}+{侵蝕率B})dx7　100↑",
+                    "",
+                    "d10+",
+                    "d10+",
+                    "",
+                    "",
+                    "//バックトラック",
+                    "自己申告",
+                    "侵蝕率{侵蝕率}% ロイス{ロイス}個",
+                    "",
+                    "{侵蝕率}-{ロイス}d10　通常振り/追加振り",
+                    "{侵蝕率}-({ロイス}+{ロイス})d10　2倍振り"
+                ].join("\n");
+
+                var Text = JSON.stringify(data2);
+                document.forms.resultform.myresult.value = Text;
+                navigator.clipboard.writeText(Text)
+                    .then(function () {
+                        alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)');
+                    })
+                    .catch(err => {
+                        alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
+                    });
+                //JSONP処理コールバック関数定義終了
+            };
+            document.body.appendChild(s);
+        }
+        else if (checkSatasupeCharacterSheets(charURL)) {
+            var s = document.createElement("script");
+            s.src = "https://" + charURL.hostname + "/satasupe/display?ajax=1&callback=OCLSatasupe&key=" + (new URLSearchParams(charURL.search).get('key'));
+            satasupe_addtion_alert=""
+            console.log("satasupe")
+            OCLSatasupe = (data) => {
+                var karmaset=new Set();
+
+                function myIncludes(str,name){
+                    console.log(str)
+                    return str && str.includes(name);
+                }
+                function checkTalent(name) {
+                    ret = data.karma.some(value => myIncludes(value.talent.name,name))
+                    if(ret){
+                        karmaset.add("【"+name+"】");
+                    }
+                    return ret
+                }
+                function checkPrice(name) {
+                    ret = data.karma.some(value => myIncludes(value.price.name,name))
+                    if(ret){
+                        karmaset.add("【"+name+"】");
+                    }
+                    return ret
+                }
+                //肉体点修正異能代償
+                BP = 0;
+                BP += Number(checkTalent("巨体") ? data.base.gift.body.value : 0);
+                BP += Number(checkTalent("超人") ? data.base.gift.body.value : 0);
+                BP += Number(checkPrice("虚弱") ? -2 : 0);
+                
+                //精神点修正異能代償
+                MP = 0;
+                MP += Number(checkTalent("超人") ? data.base.gift.body.value : 0);
+                MP += Number(checkPrice("散漫") ? -2 : 0);
+                //サイフ修正 
+                SPmodfy = 0;
+                SPmodfy += Number(checkPrice("借金大王") ? -1 : 0);
+                if(karmaset.size){
+                    satasupe_addtion_alert+="\n"
+                    satasupe_addtion_alert+=Array.from(karmaset).reduce((acc,cur)=> acc+cur,"")
+                    satasupe_addtion_alert+="効果反映"
+                }
+                var data2 = {
+                    "kind": "character",
+                    "data": {
+                        "name": data.base.name || data.base.nameKana,
+                        "externalUrl": charURL.href,
+                        "initiative": Number(data.base.power.initiative) || 0,
+                        "status": [
+                            {
+                                "label": "肉体点",
+                                "value": 10+BP,
+                                "max": 10+BP
+                            },
+                            {
+                                "label": "精神点",
+                                "value": 10+MP,
+                                "max": 10+MP
+                            },
+                            {
+                                "label": "サイフ",
+                                "value": Number(data.base.abl.life.value) - Number(data.cond.wallet.value)+Number(SPmodfy),
+                                "max": Number(data.base.abl.life.value)+Number(SPmodfy)
+                            },
+                            {
+                                "label": "性業値",
+                                "value": data.base.emotion,
+                                "max": 0
+                            },
+                        ],
+                        "params": [
+                            {
+                                "label": "犯罪",
+                                "value": data.base.abl.crime.value
+                            },
+                            {
+                                "label": "生活",
+                                "value": data.base.abl.life.value
+                            },
+                            {
+                                "label": "恋愛",
+                                "value": data.base.abl.love.value
+                            },
+                            {
+                                "label": "教養",
+                                "value": data.base.abl.culture.value
+                            },
+                            {
+                                "label": "戦闘",
+                                "value": data.base.abl.combat.value
+                            },
+                            {
+                                "label": "肉体",
+                                "value": data.base.gift.body.value
+                            },
+                            {
+                                "label": "精神",
+                                "value": data.base.gift.mind.value
+                            },
+                            {
+                                "label": "攻撃力",
+                                "value": data.base.power.attack
+                            },
+                            {
+                                "label": "破壊力",
+                                "value": data.base.power.destroy
+                            }
+                        ],
+                        "active": true, "secret": false, "invisible": false, "hideStatus": false,
+                        "commands": "◆行為判定(nに難易度を入れる)\n({犯罪}+0)R>=n[,1] 犯罪 \n({生活}+0)R>=n[,1] 生活\n({恋愛}+0)R>=n[,1] 恋愛\n({教養}+0)R>=n[,1] 教養\n({戦闘}+0)R>=n[,1] 戦闘\n({肉体}+0)R>=n[1,1] 肉体\n({精神}+0)R>=n[1,1] 精神\nSR{性業値} [性業値判定]\n\n◆戦闘\n({攻撃力}+0)R>=n[,1]\n\n<セーブ/飛ぶ>\n({肉体}+0)R>=n[,1] [セーブ判定]\n({肉体}+0)R>=n[1,2] [跳ぶ]\n\n<ファンブル他>\nFumbleT [命中ファンブル]\nFatalT [致命傷表]\nEnterT [登場表]\nBudTT [バッドトリップ表]\n\n<その後表>\nAfterT <その後表>"
+                    }
+                };
+                
+                var Text = JSON.stringify(data2);
+                document.forms.resultform.myresult.value = Text;
+                navigator.clipboard.writeText(Text)
+                    .then(function () {
+                        alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)'+satasupe_addtion_alert);
+                    })
+                    .catch(err => {
+                        alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)'+satasupe_addtion_alert);
+                    });
+                //JSONP処理コールバック関数定義終了
+            };
+            document.body.appendChild(s);
+            console.log("start satasupe")
+        } else if (checkmayolandCharacterSheets(charURL)) {
+            var s = document.createElement("script");
+            s.src = "https://" + charURL.hostname + "/mayoland/display?ajax=1&callback=OCLmayoland&key=" + (new URLSearchParams(charURL.search).get('key'));
+            OCLmayoland = (data) => {
+                var data2 = {
+                    "kind": "character",
+                    "data": {
+                        "name": data.base.name,
+                        "memo": "アイテム\n",
+                        "externalUrl": charURL.href,
+                        "initiative": 0,
+                        "status": [
+                            {
+                                "label": "HP",
+                                "value": eval(data.subpower.hp.current),
+                                "max": eval(data.subpower.hp.max)
+                            },
+                            {
+                                "label": "気力",
+                                "value": 0,
+                                "max": eval(data.subpower.vessel.max)
+                            },
+                            {
+                                "label": "配下",
+                                "value": 0,
+                                "max": eval(data.subpower.subordinates.max)
+                            },
+                            {
+                                "label": "回避",
+                                "value": eval(data.subpower.dodge.current),
+                                "max": 0
+                            },
+                        ],
+                        "params": [
+                            {
+                                "label": "才覚",
+                                "value": data.power.life.total
+                            },
+                            {
+                                "label": "魅力",
+                                "value": data.power.culture.total
+                            },
+                            {
+                                "label": "探索",
+                                "value": data.power.security.total
+                            },
+                            {
+                                "label": "武勇",
+                                "value": data.power.military.total
+                            }
+                        ],
+                        "active": true, "secret": false, "invisible": false, "hideStatus": false,
+                        "commands": ""
+                    }
+                };
+                for (let index = 1; index <= 6; index++) {
+                    data2.data.memo += index + ".";
+                    data2.data.memo += (data["equip" + index] ? data["equip" + index] : "") + "\n";
+                }
+                data2.data.memo += "配下.";
+                data2.data.memo += data.equip7 ? data.equip7 : "";
+                data2.data.commands = [
+                    "//能力値判定　xに目標値を記入",
+                    "2MK+{才覚}+0>=x　才覚判定",
+                    "2MK+{魅力}+0>=x　魅力判定",
+                    "2MK+{探索}+0>=x　探索判定",
+                    "2MK+{武勇}+0>=x　武勇判定",
+                    "",
+                    "//情報収集",
+                    "IG　情報収集表",
+                    "RMS　ランダムマップ選択表",
+                    "",
+                    "//王国フェイズ",
+                    "RT　視察表",
+                    "TT　道中表",
+                    "",
+                    "//冒険フェイズ",
+                    "TBT　才覚休憩表",
+                    "CBT　魅力休憩表",
+                    "SBT　探索休憩表",
+                    "VBT　武勇休憩表",
+                    "THT　才覚ハプニング表",
+                    "CHT　魅力ハプニング表",
+                    "SHT　探索ハプニング表",
+                    "VHT　武勇ハプニング表",
+                    "",
+                    "NT　交渉表",
+                    "SE　特殊遭遇表",
+                    "",
+                    "//戦闘",
+                    "CAT　痛打表",
+                    "FWT　致命傷表",
+                    "CFT　戦闘ファンブル表",
+                    "",
+                    "//終了フェイズ",
+                    "KCT　王国変動表"
+                ].join("\n");
+
+                if (document.getElementById('paramAdd').checked) {
+                    data2.data.commands += (
+                        [
+                            "//ステータス操作",
+                            ":HP+",
+                            ":HP-",
+                            ":気力+",
+                            ":気力-",
+                            ":配下+",
+                            ":配下-",
+                        ].join("\n")
+                    );
+                }
+                var Text = JSON.stringify(data2);
+                document.forms.resultform.myresult.value = Text;
+                navigator.clipboard.writeText(Text)
+                    .then(function () {
+                        alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)');
+                    })
+                    .catch(err => {
+                        alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
+                    });
+                //JSONP処理コールバック関数定義終了
+            };
+            document.body.appendChild(s);
+        } else if (checkmayokingCharacterSheets(charURL)) {
+            var s = document.createElement("script");
+            s.src = "https://" + charURL.hostname + "/mayoking/display?ajax=1&callback=OCLmayoking&key=" + (new URLSearchParams(charURL.search).get('key'));
+            OCLmayoking = (data) => {
+                var data2 = {
+                    "kind": "character",
+                    "data": {
+                        "name": data.base.name,
+                        "externalUrl": charURL.href,
+                        "initiative": -99,
+                        "status": [
+                            {
+                                "label": "総人口",
+                                "value": data.populace.base,
+                                "max": data.populace.max
+                            },
+                            {
+                                "label": "民",
+                                "value": data.people.kingdam,
+                                "max": data.people.kingdam
+                            },
+                            {
+                                "label": "減った配下の数",
+                                "value": 0,
+                                "max": 0
+                            },
+                            {
+                                "label": "民の声",
+                                "value": data.people.voice.current,
+                                "max": data.people.voice.max
+                            },
+                            {
+                                "label": "ターン",
+                                "value": 0,
+                                "max": 3
+                            },
+                            {
+                                "label": "クォーター",
+                                "value": 0,
+                                "max": 4
+                            },
+                            {
+                                "label": "MG",
+                                "value": 0,
+                                "max": 0
+                            },
+                        ],
+                        "params": [
+                            {
+                                "label": "生活",
+                                "value": data.life.total
+                            },
+                            {
+                                "label": "文化",
+                                "value": data.culture.total
+                            },
+                            {
+                                "label": "治安",
+                                "value": data.security.total
+                            },
+                            {
+                                "label": "軍事",
+                                "value": data.military.total
+                            }
+                        ],
+                        "active": true, "secret": false, "invisible": false, "hideStatus": false,
+                        "commands": ""
+                    }
+                };
+
+
+                if (document.getElementById('paramAdd').checked) {
+                    data2.data.commands = [
+                        "//ステータス操作",
+                        ":クォーター+1",
+                        ":クォーター=0",
+                        ":ターン+1",
+                    ].join("\n");
+                }
+                var Text = JSON.stringify(data2);
+                document.forms.resultform.myresult.value = Text;
+                navigator.clipboard.writeText(Text)
+                    .then(function () {
+                        alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)');
+                    })
+                    .catch(err => {
+                        alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
+                    });
+                //JSONP処理コールバック関数定義終了
+            };
+            document.body.appendChild(s);
+        } else if (checkYutorize(charURL)) {
+            var s = document.createElement("script");
+            s.src = charURL + '&mode=json&callback=OCLYutoDX3';
+            OCLYutoDX3 = async (data) => {
+                let palette;
+                if (data.chatPalette) {
+                    palette = separateYutorizeChatPalette(data.chatPalette);
+                }
+                else if (document.getElementById('corsLimiter').checked) {
+                    document.forms.resultform.myresult.value = '無法中…ちょっと時間がｶｶﾙﾖｯ';
+                    palette = await getYutorizeChatPalette(charURL);
+                }
+                else {
+                    palette = {};
+                }
+                var data2 = {
+                    "kind": "character",
+                    "data": {
+                        "name": data.characterName || data.aka,
+                        "externalUrl": charURL.href,
+                        "memo": `${data.characterNameRuby ? '(' + data.characterNameRuby + ')\n' : ''}PL: ${data.playerName || 'PL情報無し'}\n${data.works || ''} / ${data.cover || ''}\n${data.syndrome1 || ''}${data.syndrome2 ? '、' + data.syndrome2 : ''}${data.syndrome3 ? '、' + data.syndrome3 : ''}\n\n${data.imageURL ? '立ち絵：' + (data.imageCopyright || '権利情報なし') : ''}`,
+                        "initiative": Number(data.initiativeTotal || 0),
+                        "status": [
+                            {
+                                "label": 'HP',
+                                "value": data.maxHpTotal,
+                                "max": data.maxHpTotal
+                            }, {
+                                "label": '侵蝕率',
+                                "value": data.baseEncroach || 0,
+                                "max": 300
+                            }, {
+                                "label": 'ロイス',
+                                "value": data.loisHave !== undefined ? data.loisHave : 3,
+                                "max": data.loisMax || 7
+                            }, {
+                                "label": '財産点',
+                                "value": data.savingTotal,
+                                "max": data.savingTotal
+                            }
+                        ],
+                        "params": (JSON.stringify(palette.parameters) !== JSON.stringify([]) && palette.parameters !== undefined) ? palette.parameters :
+                            [
+                                {
+                                    "label": "肉体",
+                                    "value": data.sttTotalBody
+                                }, {
+                                    "label": "感覚",
+                                    "value": data.sttTotalSense
+                                }, {
+                                    "label": "精神",
+                                    "value": data.sttTotalMind
+                                }, {
+                                    "label": "社会",
+                                    "value": data.sttTotalSocial
+                                }, {
+                                    "label": "白兵",
+                                    "value": data.skillTotalMelee
+                                }, {
+                                    "label": "回避",
+                                    "value": data.skillTotalDodge
+                                }, {
+                                    "label": "射撃",
+                                    "value": data.skillTotalRanged
+                                }, {
+                                    "label": "知覚",
+                                    "value": data.skillTotalPercept
+                                }, {
+                                    "label": "RC",
+                                    "value": data.skillTotalRC
+                                }, {
+                                    "label": "意志",
+                                    "value": data.skillTotalWill
+                                }, {
+                                    "label": "交渉",
+                                    "value": data.skillTotalNegotiate
+                                }, {
+                                    "label": "調達",
+                                    "value": data.skillTotalProcure
+                                }
+                            ] || [],
+                        "active": true, "secret": false, "invisible": false, "hideStatus": false,
+                        "commands": palette.palette || '',
+                    }
+                };
+
+                var Text = JSON.stringify(data2);
+                document.forms.resultform.myresult.value = Text;
+                navigator.clipboard.writeText(Text)
+                    .then(function () {
+                        alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)');
+                    })
+                    .catch(err => {
+                        alert('下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
+                    });
+                //JSONP処理コールバック関数定義終了
+            };
+            document.body.appendChild(s);
+
+        }
+        else {
+            //URLが間違っている場合
+            errURL()
+        }
+    };
+    function errURL() {
+        //URLが間違っている場合
+        errlist = [
+            "なんだ！？(^^)なんだ！？(^^)\nどこのURLなんだ？",
+            "うぐっ不明なURLすぎだァ～～！！\n浮上するぞォ！！",
+            "ｶﾞﾗﾗﾗ←URLを開ける\nわ…わりぃ!!!!//////\nﾋﾟｼｬﾝ!!!!←URLを閉める\n(でも……なんか知らんURL見た//////)",
+            "おまｯ!?なんてURLしてんだ!?\nんなURLでコマ作成機ん中を歩き回るな（怒）",
+            "ｽﾞﾁﾞｭｯｸﾞﾁｭ、ｽﾞﾌﾟﾝｯ!!(URL由来のエラーが突き上げる)",
+            "決めたんやボクエラーになる\nエラーになって変えたる\nURL間違えた乱菊が泣かんでもええようにしたる",
+            "大丈夫。こわくないよ。おいで。\nお姉さんと一緒にURL確認しよう。",
+            "あ、オレや…URLエラーや…",
+            "爺ちゃんが出てきたURLを「こんなもんこうじゃ」って焼酎に付けて\n「怖いじゃろワシは怖ない」\nとか言いながら食ってエラー吐いて救急車騒ぎになったの、\n今でも意味わかんないんだよな。",
+            "共にURLを確認しよう\n同星達よ……!!",
+            "は、URLのミスということか……そう簡単にはいかないか……。",
+            "明日になったら　URL確認しようよ",
+            "今日 お前には\"エラー\"が出ている",
+            "これって……\nああ\n\nURLのコピペミスだ",
+            "あーーっはっはっは\nエラーが出てきて残念だったな\nこんなURL見たのは久しぶりだありがとよ！\nいやー笑わせてくれるよほんとプハハハハハハハハーッハッハッーーーー！！",
+            "父さんのいうとおりだ 俺は磯部じゃない\n俺は…\n\nURLエラーを滅ぼす者だ！！",
+            "ウワアアアアアア！ウオォ！URLエラアーーーーーーーー！！！",
+            "これほどの力を持つURLが現れたのは初めてだ　この死の歯車でエラーをぶっ殺す！",
+        ]
+        myrand = Math.floor(Math.random() * errlist.length);
+        alert(errlist[myrand]);
+    }
+    function checkDXCharacterSheets(url) {
+        return (url.hostname === "character-sheets.appspot.com" && url.pathname.match(/\/dx3\/edit\.html$/));
+    }
+    function checkSatasupeCharacterSheets(url) {
+        return (url.hostname === "character-sheets.appspot.com" && url.pathname.match(/\/satasupe\/edit\.html$/));
+    }
+    function checkmayolandCharacterSheets(url) {
+        return (url.hostname === "character-sheets.appspot.com" && url.pathname.match(/\/mayoland\/edit\.html$/));
+    }
+    function checkmayokingCharacterSheets(url) {
+        return (url.hostname === "character-sheets.appspot.com" && url.pathname.match(/\/mayoking\/edit\.html$/));
+    }
+    function checkYutorize(url) {
+        return ((url.hostname === "yutorize.2-d.jp" || document.getElementById('YutoLimiter').checked) && url.pathname.match(/\/dx3rd\//));
+    }
+    /*
+    function getYutorizeJsonData(url) {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.codetabs.com/v1/proxy/?quest=' + url + '&mode=json', true);
+            xhr.responseType = "json";
+            xhr.onload = (e) => {
+                resolve(e.currentTarget.response);
+            };
+            xhr.onerror = () => reject('error');
+            xhr.onabort = () => reject('abort');
+            xhr.ontimeout = () => reject('timeout');
+            xhr.send();
+        });
+    }
+    */
+    function getYutorizeChatPalette(url) {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://api.codetabs.com/v1/proxy/?quest=' + url + '&propertiesall=1&tool=bcdice&mode=palette', true);
+            xhr.responseType = "text";
+            xhr.onload = (e) => {
+                resolve(separateYutorizeChatPalette(e.currentTarget.response));
+            };
+            xhr.onerror = () => resolve('');
+            xhr.onabort = () => resolve('');
+            xhr.ontimeout = () => resolve('');
+            xhr.send();
+        });
+    }
+
+    function separateYutorizeChatPalette(str) {
+        const result = {
+            palette: '',
+            parameters: []
+        };
+        const palette = [];
+        const parameterRegExp = /^\/\/(.+)[=\uFF1D]([0-9\+\-\/\*]+)?$/;
+        //console.log(str);
+        str = str.replace(/&lt;br&gt;/g, '\n');
+        //console.log(str);
+        str.split('\n').forEach((line) => {
+            const parameterExecResult = parameterRegExp.exec(line);
+            if (parameterExecResult) {
+                result.parameters.push({
+                    label: parameterExecResult[1],
+                    value: (parameterExecResult[2] !== undefined ? parameterExecResult[2] : '')
+                });
+            } else {
+                palette.push(line);
+            }
+        });
+        result.palette = palette.join('\n');
+        //console.log(result.parameters);
+        //console.log(Boolean(result.parameters));
+        //console.log(result.parameters !== []);
+        return result;
+    }
+
+    function alert_on_move() {
+        return confirm("別のページに移動するけどお前？")
+    }
+</script>
+
+</html>

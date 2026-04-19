@@ -70,7 +70,11 @@
     </p>
     <h3>変更履歴</h3>
     <p>
-        ver1.11<br>
+        ver1.12<br>
+        SWの<a href="https://charasheet.vampire-blood.net/swordworld2_pc_making.html" onClick="return alert_on_move()">キャラシ</a>のサイトに仮対応<br>
+        SWは技能とかおれが把握しきれてない部分結構あるのでなんか抜け漏れあったら…笑ってくれ(^^)<br>
+        経緯的には某所のベタ移植なのでそこが復活次第使える物を使うことを…勧める…<br>
+        <a href="./DXCharacterVer1.11.html" onClick="return alert_on_move()">ver1.11</a><br>
         DXの技能値の()部分の扱いミスしていたのを修正<br>
         ごべーーーーーーーん！括弧は修正値じゃなくて修正後の値だったァーー！<br>
         ver1.10<br>
@@ -78,13 +82,12 @@
         巨体、超人、虚弱、散漫、借金大王のステータス修正を自動的に反映するように<br>
         メモ書きとして書いてあったとしても反映されちゃうのでその時は…笑ってくれ(^^)<br>
         またバグがある可能性濃厚なので上手くコマが作れなかったら<a href="./DXCharacterVer1.9.1.html"
-        onClick="return alert_on_move()">ver1.9.1</a>を使ってくれ(^^)<br>
+            onClick="return alert_on_move()">ver1.9.1</a>を使ってくれ(^^)<br>
         似たような仕組みでまよキンのスキルによるステータス補正も反映できるかもだよ<br>
         ンマーこっちはデータ量多すぎて作業量的にキツイので着手予定は未定<br>
         代替案として説明書きに{ステータス名}:{上昇値}とあればそれを反映とか考えてるけど<br>
         フォーマットわからなくて頭おかしくなりそうだけど<br>
-        <a href="./DXCharacterVer1.9.1.html"
-        onClick="return alert_on_move()">ver1.9.1</a><br>
+        <a href="./DXCharacterVer1.9.1.html" onClick="return alert_on_move()">ver1.9.1</a><br>
         まよキン対応更新　国も対応したけどおれ？<br>
         ver1.9.0<br>
         そろそろまよキン対応するか　ゾロもランドメイカーの一族<br>
@@ -154,10 +157,7 @@
         } catch (error) {
             alert("🌈");
         }
-        if (!charURL.search) {
-            errURL();
-            return;
-        }
+
         if (!navigator.clipboard) {
             alert("あークリップボードへのアクセス権なくて鬱");
         }
@@ -238,14 +238,14 @@
                 skil_array.forEach(n => {
                     // alv = data.skills[n[0]].A.lv ? Number(data.skills[n[0]].A.lv) : 0;
                     // dlv = data.skills[n[0]].D.dlv ? Number(data.skills[n[0]].D.dlv) : 0;
-                    Lv=null
-                    if (Number(data.skills[n[0]].D.dlv)){
-                        Lv=Number(data.skills[n[0]].D.dlv)
-                    }else if(Number(data.skills[n[0]].A.lv)){
-                        Lv=Number(data.skills[n[0]].A.lv)
+                    Lv = null
+                    if (Number(data.skills[n[0]].D.dlv)) {
+                        Lv = Number(data.skills[n[0]].D.dlv)
+                    } else if (Number(data.skills[n[0]].A.lv)) {
+                        Lv = Number(data.skills[n[0]].A.lv)
                     }
                     // Lv = Number(data.skills[n[0]].A.lv) + Number(data.skills[n[0]].D.dlv);
-                    if(Lv != null){
+                    if (Lv != null) {
                         skill_name = n[1];
                         param = { "label": skill_name, "value": String(Lv) };
                         data2.data.params.push(param)
@@ -261,10 +261,10 @@
                         alv = alv ? Number(alv) : 0;
                         dlv = n.dlv1;
                         dlv = dlv ? Number(dlv) : 0;
-                        if (dlv>0){
-                            Lv=dlv
-                        }else{
-                            Lv=alv
+                        if (dlv > 0) {
+                            Lv = dlv
+                        } else {
+                            Lv = alv
                         }
                         param = { "label": "運転:" + n.name1, "value": String(Lv) };
                         data2.data.params.push(param)
@@ -275,10 +275,10 @@
                         alv = alv ? Number(alv) : 0;
                         dlv = n.dlv2;
                         dlv = dlv ? Number(dlv) : 0;
-                        if (dlv>0){
-                            Lv=dlv
-                        }else{
-                            Lv=alv
+                        if (dlv > 0) {
+                            Lv = dlv
+                        } else {
+                            Lv = alv
                         }
                         param = { "label": "芸術:" + n.name2, "value": String(Lv) };
                         data2.data.params.push(param)
@@ -289,10 +289,10 @@
                         alv = alv ? Number(alv) : 0;
                         dlv = n.dlv3;
                         dlv = dlv ? Number(dlv) : 0;
-                        if (dlv>0){
-                            Lv=dlv
-                        }else{
-                            Lv=alv
+                        if (dlv > 0) {
+                            Lv = dlv
+                        } else {
+                            Lv = alv
                         }
                         param = { "label": "知識:" + n.name3, "value": String(Lv) };
                         data2.data.params.push(param)
@@ -303,10 +303,10 @@
                         alv = alv ? Number(alv) : 0;
                         dlv = n.dlv4;
                         dlv = dlv ? Number(dlv) : 0;
-                        if (dlv>0){
-                            Lv=dlv
-                        }else{
-                            Lv=alv
+                        if (dlv > 0) {
+                            Lv = dlv
+                        } else {
+                            Lv = alv
                         }
                         param = { "label": "情報:" + n.name4, "value": String(Lv) };
                         data2.data.params.push(param)
@@ -397,26 +397,26 @@
         else if (checkSatasupeCharacterSheets(charURL)) {
             var s = document.createElement("script");
             s.src = "https://" + charURL.hostname + "/satasupe/display?ajax=1&callback=OCLSatasupe&key=" + (new URLSearchParams(charURL.search).get('key'));
-            satasupe_addtion_alert=""
+            satasupe_addtion_alert = ""
             console.log("satasupe")
             OCLSatasupe = (data) => {
-                var karmaset=new Set();
+                var karmaset = new Set();
 
-                function myIncludes(str,name){
+                function myIncludes(str, name) {
                     console.log(str)
                     return str && str.includes(name);
                 }
                 function checkTalent(name) {
-                    ret = data.karma.some(value => myIncludes(value.talent.name,name))
-                    if(ret){
-                        karmaset.add("【"+name+"】");
+                    ret = data.karma.some(value => myIncludes(value.talent.name, name))
+                    if (ret) {
+                        karmaset.add("【" + name + "】");
                     }
                     return ret
                 }
                 function checkPrice(name) {
-                    ret = data.karma.some(value => myIncludes(value.price.name,name))
-                    if(ret){
-                        karmaset.add("【"+name+"】");
+                    ret = data.karma.some(value => myIncludes(value.price.name, name))
+                    if (ret) {
+                        karmaset.add("【" + name + "】");
                     }
                     return ret
                 }
@@ -425,7 +425,7 @@
                 BP += Number(checkTalent("巨体") ? data.base.gift.body.value : 0);
                 BP += Number(checkTalent("超人") ? data.base.gift.body.value : 0);
                 BP += Number(checkPrice("虚弱") ? -2 : 0);
-                
+
                 //精神点修正異能代償
                 MP = 0;
                 MP += Number(checkTalent("超人") ? data.base.gift.body.value : 0);
@@ -433,10 +433,10 @@
                 //サイフ修正 
                 SPmodfy = 0;
                 SPmodfy += Number(checkPrice("借金大王") ? -1 : 0);
-                if(karmaset.size){
-                    satasupe_addtion_alert+="\n"
-                    satasupe_addtion_alert+=Array.from(karmaset).reduce((acc,cur)=> acc+cur,"")
-                    satasupe_addtion_alert+="効果反映"
+                if (karmaset.size) {
+                    satasupe_addtion_alert += "\n"
+                    satasupe_addtion_alert += Array.from(karmaset).reduce((acc, cur) => acc + cur, "")
+                    satasupe_addtion_alert += "効果反映"
                 }
                 var data2 = {
                     "kind": "character",
@@ -447,18 +447,18 @@
                         "status": [
                             {
                                 "label": "肉体点",
-                                "value": 10+BP,
-                                "max": 10+BP
+                                "value": 10 + BP,
+                                "max": 10 + BP
                             },
                             {
                                 "label": "精神点",
-                                "value": 10+MP,
-                                "max": 10+MP
+                                "value": 10 + MP,
+                                "max": 10 + MP
                             },
                             {
                                 "label": "サイフ",
-                                "value": Number(data.base.abl.life.value) - Number(data.cond.wallet.value)+Number(SPmodfy),
-                                "max": Number(data.base.abl.life.value)+Number(SPmodfy)
+                                "value": Number(data.base.abl.life.value) - Number(data.cond.wallet.value) + Number(SPmodfy),
+                                "max": Number(data.base.abl.life.value) + Number(SPmodfy)
                             },
                             {
                                 "label": "性業値",
@@ -508,15 +508,15 @@
                         "commands": "◆行為判定(nに難易度を入れる)\n({犯罪}+0)R>=n[,1] 犯罪 \n({生活}+0)R>=n[,1] 生活\n({恋愛}+0)R>=n[,1] 恋愛\n({教養}+0)R>=n[,1] 教養\n({戦闘}+0)R>=n[,1] 戦闘\n({肉体}+0)R>=n[1,1] 肉体\n({精神}+0)R>=n[1,1] 精神\nSR{性業値} [性業値判定]\n\n◆戦闘\n({攻撃力}+0)R>=n[,1]\n\n<セーブ/飛ぶ>\n({肉体}+0)R>=n[,1] [セーブ判定]\n({肉体}+0)R>=n[1,2] [跳ぶ]\n\n<ファンブル他>\nFumbleT [命中ファンブル]\nFatalT [致命傷表]\nEnterT [登場表]\nBudTT [バッドトリップ表]\n\n<その後表>\nAfterT <その後表>"
                     }
                 };
-                
+
                 var Text = JSON.stringify(data2);
                 document.forms.resultform.myresult.value = Text;
                 navigator.clipboard.writeText(Text)
                     .then(function () {
-                        alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)'+satasupe_addtion_alert);
+                        alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)' + satasupe_addtion_alert);
                     })
                     .catch(err => {
-                        alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)'+satasupe_addtion_alert);
+                        alert('クリップボードに出力失敗🌈\n下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)' + satasupe_addtion_alert);
                     });
                 //JSONP処理コールバック関数定義終了
             };
@@ -835,9 +835,710 @@
             };
             document.body.appendChild(s);
 
-        }
-        else {
+        } else if (checkvampireCharacterSheets(charURL)) {
+            var s = document.createElement("script");
+            s.src = charURL + ".js?callback=OCLvampire";
+            OCLvampire = (json) => {
+                console.log("vampireCharacterSheets")
+                if (json.game == "swordworld2") {
+                    function com_jsonNullCheck(json, prop, prevData) {
+                        let result
+                        if (json[prop]) {
+                            result = json[prop];
+                        }
+                        else {
+                            result = prevData;
+                        }
+                        return result;
+                    }
+                    //SWだと思う
+                    const sw25GinouName = ["ファイター", "グラップラー", "フェンサー", "シューター", "ソーサラー", "コンジャラー", "プリースト", "フェアリーテイマー", "マギテック", "スカウト", "レンジャー", "セージ", "エンハンサー", "バード", "アルケミスト", "ライダー", "デーモンルーラー", "ウォーリーダー", "ミスティック", "フィジカルマスター", "グリモワール", "アーティザン", "アリストクラシー", "ドルイド", "ジオマンサー", "バトルダンサー", "アビスゲイザー", "ダークハンター", "ビブリオマンサー"];
+                    let sw25GinouLv = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                    let sw25GinouLvUpper = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                    const sw25SenshiGinou = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                    const sw25MagicGinou = [0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1];
+                    const sw25AutoSTFlg = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                    let sw25AutoST = ["タフネス", "追加攻撃", "カウンター", "バトルマスター", "ルーンマスター", "トレジャーハント", "ファストアクション", "影走り", "トレジャーマスター", "匠の技", "サバイバビリティ", "不屈", "ポーションマスター", "縮地", "ランアンドガン", "鋭い目", "弱点看破", "マナセーブ", "マナ耐性", "賢人の知恵"];
+                    const sw25AutoSTprop = ["ST_name_fig1", "ST_name_figgrp", "ST_name_grp1", "ST_name_grp2", "ST_name_grp3", "ST_name_grp4", "ST_name_magicmaster", "ST_name_scout1", "ST_name_scout2", "ST_name_scout3", "ST_name_scout4", "ST_name_scout5", "ST_name_ranger1", "ST_name_ranger2", "ST_name_ranger3", "ST_name_ranger4", "ST_name_ranger5", "ST_name_sage1", "ST_name_sage2", "ST_name_sage3", "ST_name_sage4", "ST_name_sage5"/*,"ST_name_bdc1"舞流しバグってるっぽい*/];
+                    const sw25ArmType = ["ソード", "アックス", "スピア", "メイス", "スタッフ", "フレイル", "ウォーハンマー", "格闘", "投擲", "ボウ", "クロスボウ", "ガン", "素手/格闘"];
+                    const sw25ArmMastery = ["masterySword", "masteryAxe", "masterySpear", "masteryMace", "masteryStaff", "masteryFlail", "masteryHammer", "masteryGrapple", "masteryThrow", "masteryBow", "masteryCrossbow", "masteryGun", "masteryGrapple"];
+                    const sw25ArmCat = {
+                        "ソード": { mastery: ['masterySword'], ismelee: 1 },
+                        "アックス": { mastery: ['masteryAxe'], ismelee: 1 },
+                        "スピア": { mastery: ['masterySpear'], ismelee: 1 },
+                        "メイス": { mastery: ['masteryMace'], ismelee: 1 },
+                        "スタッフ": { mastery: ['masteryStaff'], ismelee: 1 },
+                        "フレイル": { mastery: ['masteryFlail'], ismelee: 1 },
+                        "ウォーハンマー": { mastery: ['masteryHammer'], ismelee: 1 },
+                        "格闘": { mastery: ['masteryGrapple'], ismelee: 1 },
+                        "投擲": { mastery: ['masteryThrow', 'mightyShot'], ismelee: 0 },
+                        "ボウ": { mastery: ['masteryBow'], ismelee: 0 },
+                        "クロスボウ": { mastery: ['masteryCrossbow'], ismelee: 0 },
+                        "ガン": { mastery: ['masteryGun'], ismelee: 0 },
+                        "素手/格闘": { mastery: ['masteryGrapple'], ismelee: 1 }
+                    };
+                    const sw25_race_bar = ["ウィークリング（ガルーダ）", "ウィークリング（タンノズ）", "ウィークリング（バジリスク）", "ウィークリング（ミノタウロス）"/*,"ウィークリング（マーマン）"*/, "ドレイク", "ドレイクブロークン", "バジリスク", "ディアボロ", "ダークトロール", "アルボル", "バーバヤガー", "ケンタウロス", "シザースコーピオン", "ドーン", "コボルド", "ラミア", "ラルヴァ"/*,"リザードマン","ライカンスロープ","バルカン"*/];
+                    const sw25ArmMeleeType = [1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1];
+                    let wizMin = 0;
+                    let wizMax = 0;
+                    let sw25_itemFlg = false;
+                    let sw25_skillFlg = false;
+                    let sw25_mysticFlg = false;
+                    let sw25_levelFlg = false;
+
+                    //  各魔法管理用
+                    let dam_sor = [["10"], ["10"], ["10", "20"], ["10", "20"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30", "40"], ["0", "10", "20", "30", "40"], ["0", "10", "20", "30", "40"], ["0", "10", "20", "30", "40", "50"], ["0", "10", "20", "30", "40", "50"], ["0", "10", "20", "30", "40", "50"], ["0", "10", "20", "30", "40", "50", "60"], ["0", "10", "20", "30", "40", "50", "60", "100"], ["0", "10", "20", "30", "40", "50", "60", "100"], ["0", "10", "20", "30", "40", "50", "60", "100"]];
+                    let dam_con = [["0"], ["0"], ["0"], ["0"], ["0"], ["0"], ["0", "10"], ["0", "10", "20"], ["0", "10", "20", "30"], ["0", "10", "20", "30"], ["0", "10", "20", "30"], ["0", "10", "20", "30"], ["0", "10", "20", "30"], ["0", "10", "20", "30"], ["0", "10", "20", "30", "60"], ["0", "10", "20", "30", "60"], ["0", "10", "20", "30", "60"]];
+                    let heal_con = [[], ["0"], ["0"], ["0"], ["0"], ["0"], ["0"], ["0"], ["0"], ["0"], ["0", "30"], ["0", "30"], ["0", "30"], ["0", "30"], ["0", "30"], ["0", "30"], ["0", "30"]];
+                    let dam_wiz = [[], [], [], ["20"], ["20"], ["20"], ["10", "20"], ["10", "20"], ["10", "20", "25", "30"], ["10", "20", "25", "30"], ["10", "20", "25", "30"], ["0", "10", "20", "25", "30"], ["0", "10", "20", "25", "30", "70"], ["0", "10", "20", "25", "30", "70"], ["0", "10", "20", "25", "30", "70"], ["0", "10", "20", "25", "30", "70"], ["0", "10", "20", "25", "30", "70"]];
+                    let dam_pri = [["5"], ["5", "10"], ["5", "10", "15"], ["5", "10", "15", "20"], ["5", "10", "15", "20", "25"], ["5", "10", "15", "20", "25", "30"], ["5", "10", "15", "20", "25", "30"], ["5", "10", "15", "20", "25", "30", "40"], ["5", "10", "15", "20", "25", "30", "40"], ["5", "10", "15", "20", "25", "30", "40"], ["5", "10", "15", "20", "25", "30", "40", "50"], ["5", "10", "15", "20", "25", "30", "40", "50"], ["5", "10", "15", "20", "25", "30", "40", "50", "70", "80", "90"], ["5", "10", "15", "20", "25", "30", "40", "50", "70", "80", "90"], ["5", "10", "15", "20", "25", "30", "40", "50", "70", "80", "90"], ["5", "10", "15", "20", "25", "30", "40", "50", "70", "80", "90"], ["5", "10", "15", "20", "25", "30", "40", "50", "70", "80", "90"]];
+                    let heal_pri = [[], ["10"], ["10"], ["10"], ["10", "30"], ["10", "30"], ["10", "30"], ["10", "30"], ["10", "30"], ["10", "30", "50"], ["10", "30", "50"], ["10", "30", "50"], ["10", "30", "50", "70"], ["10", "30", "50", "70"], ["10", "30", "50", "70"], ["10", "30", "50", "70"], ["10", "30", "50", "70"]];
+                    let dam_bullet = [["20"], ["20"], ["20"], ["20"], ["20"], ["20", "30"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30", "40"], ["10", "20", "30", "40"], ["10", "20", "30", "40"], ["10", "20", "30", "40", "70"], ["10", "20", "30", "40", "70"], ["10", "20", "30", "40", "70"]];
+                    let heal_bullet = [[], ["0"], ["0"], ["0"], ["0"], ["0"], ["0"], ["0"], ["0"], ["0", "30"], ["0", "30"], ["0", "30"], ["0", "30"], ["0", "30"], ["0", "30"], ["0", "30"], ["0", "30"]];
+                    let dam_mag = [[], [], [], [], ["30"], ["30"], ["30"], ["30"], ["30"], ["30"], ["30"], ["30"], ["30"], ["30"], ["30", "90"], ["30", "90"], ["30", "90"]];
+                    let heal_mag = [[], [], [], [], [], [], [], [], ["50"], ["50"], ["50"], ["50"], ["50"], ["50"], ["50"], ["50"], ["50"]];
+                    let dam_fai = [[], ["10"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30", "40"], ["10", "20", "30", "40", "50"], ["10", "20", "30", "40", "50"], ["10", "20", "30", "40", "50", "60"], ["10", "20", "30", "40", "50", "60"], ["10", "20", "30", "40", "50", "60"], ["10", "20", "30", "40", "50", "60"], ["10", "20", "30", "40", "50", "60", "80"], ["10", "20", "30", "40", "50", "60", "80"], ["10", "20", "30", "40", "50", "60", "80"]];
+                    let dam_dru = [[], [], [], ["10", "20"], ["10", "20"], ["10", "20"], ["10", "20"], ["10", "20"], ["10", "20"], ["10", "20"], ["10", "20"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30", "50"], ["10", "20", "30", "50"], ["10", "20", "30", "50"]];
+                    let phy_dru = [["0,3,6"], ["0,3,6"], ["0,3,6", "4,7,13"], ["0,3,6", "4,7,13"], ["0,3,6", "4,7,13"], ["0,3,6", "4,7,13"], ["0,3,6", "4,7,13", "12,15,18"], ["0,3,6", "4,7,13", "12,15,18"], ["0,3,6", "4,7,13", "12,15,18", "13,16,19"], ["0,3,6", "4,7,13", "12,15,18", "13,16,19", "18,21,24"], ["0,3,6", "4,7,13", "12,15,18", "13,16,19", "18,21,24"], ["0,3,6", "4,7,13", "12,15,18", "13,16,19", "18,21,24"], ["0,3,6", "4,7,13", "12,15,18", "13,16,19", "18,21,24", "18,21,36"], ["0,3,6", "4,7,13", "12,15,18", "13,16,19", "18,21,24", "18,21,36"], ["0,3,6", "4,7,13", "12,15,18", "13,16,19", "18,21,24", "18,21,36", "24,27,30"], ["0,3,6", "4,7,13", "12,15,18", "13,16,19", "18,21,24", "18,21,36", "24,27,30"], ["0,3,6", "4,7,13", "12,15,18", "13,16,19", "18,21,24", "18,21,36", "24,27,30"]];
+                    let dam_dem = [[], ["20"], ["10", "20"], ["10", "20"], ["10", "20"], ["10", "20"], ["10", "20"], ["10", "20"], ["10", "20", "40"], ["10", "20", "40"], ["10", "20", "40"], ["10", "20", "40"], ["10", "20", "40"], ["10", "20", "40", "70"], ["10", "20", "30", "40", "70"], ["10", "20", "30", "40", "70"], ["10", "20", "30", "40", "70"]];
+                    let dam_abyss = [["0", "20"], ["0", "20"], ["0", "10", "20"], ["0", "10", "20"], ["0", "10", "20"], ["0", "10", "20"], ["0", "10", "20", "30"], ["0", "10", "20", "30"], ["0", "10", "20", "30", "40"], ["0", "10", "20", "30", "40"], ["0", "10", "20", "30", "40", "60"], ["0", "10", "20", "30", "40", "60"], ["0", "10", "20", "30", "40", "50", "60", "70"], ["0", "10", "20", "30", "40", "50", "60", "70"], ["0", "10", "20", "30", "40", "50", "60", "70"], ["0", "10", "20", "30", "40", "50", "60", "70"], ["0", "10", "20", "30", "40", "50", "60", "70"]];
+                    let heal_abyss = [["0"], ["0"], ["0"], ["0"], ["0"], ["0", "20", "40"], ["0", "20", "40"], ["0", "20", "40"], ["0", "20", "40"], ["0", "20", "40", "70"], ["0", "20", "40", "70"], ["0", "20", "40", "70"], ["0", "20", "40", "70"], ["0", "20", "40", "70"], ["0", "20", "40", "70"], ["0", "20", "40", "70"], ["0", "20", "40", "70"]];
+                    let dam_bib = [["10", "20"], ["10", "20"], ["10", "20"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30"], ["10", "20", "30", "40", "50"], ["10", "20", "30", "40", "50"], ["10", "20", "30", "40", "50"], ["10", "20", "30", "40", "50", "60"], ["10", "20", "30", "40", "50", "60"], ["10", "20", "30", "40", "50", "60"], ["10", "20", "30", "40", "50", "60", "80", "100"], ["10", "20", "30", "40", "50", "60", "80", "100"], ["10", "20", "30", "40", "50", "60", "80", "100"], ["10", "20", "30", "40", "50", "60", "80", "100"], ["10", "20", "30", "40", "50", "60", "80", "100"]];
+                    let heal_bib = [["20"], ["20"], ["20"], ["20"], ["20"], ["20"], ["20", "40"], ["20", "40"], ["20", "40"], ["20", "40"], ["20", "40"], ["20", "40"], ["20", "40", "100"], ["20", "40", "100"], ["20", "40", "100"], ["20", "40", "100"], ["20", "40", "100"]];
+
+                    /*
+                    * ソードワールド2.0(2.5) グローバル変数初期化
+                    */
+                    function SW2_Global_Initialize() {
+                        sw25_itemFlg = true;
+                        sw25_skillFlg = true;
+                        sw25_mysticFlg = true;
+                        sw25_levelFlg = true;
+                        //  sw25ArmType = ["ソード","アックス","スピア","メイス","スタッフ","フレイル","ウォーハンマー","格闘","投擲","ボウ","クロスボウ","ガン","素手/格闘"];
+                        sw25GinouLv = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                        //  sw25AutoSTFlg = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+                        wizMin = 0;
+                        wizMax = 0;
+                    }
+
+                    let money = "0";
+                    let race = "";
+                    let gender = "";
+                    let age = "";
+                    let hissatsuFlg = false;
+                    let critRayFlg = false;
+
+
+                    let N_waza = com_jsonNullCheck(json, "N_waza", "0");
+                    let N_karada = com_jsonNullCheck(json, "N_karada", "0");
+                    let N_kokoro = com_jsonNullCheck(json, "N_kokoro", "0");
+                    let V_NC1 = com_jsonNullCheck(json, "V_NC1", "0");
+                    let V_NC2 = com_jsonNullCheck(json, "V_NC2", "0");
+                    let V_NC3 = com_jsonNullCheck(json, "V_NC3", "0");
+                    let V_NC4 = com_jsonNullCheck(json, "V_NC4", "0");
+                    let V_NC5 = com_jsonNullCheck(json, "V_NC5", "0");
+                    let V_NC6 = com_jsonNullCheck(json, "V_NC6", "0");
+                    let NS1 = com_jsonNullCheck(json, "NS1", "0");
+                    let NS2 = com_jsonNullCheck(json, "NS2", "0");
+                    let NS3 = com_jsonNullCheck(json, "NS3", "0");
+                    let NS4 = com_jsonNullCheck(json, "NS4", "0");
+                    let NS5 = com_jsonNullCheck(json, "NS5", "0");
+                    let NS6 = com_jsonNullCheck(json, "NS6", "0");
+                    let NM1 = com_jsonNullCheck(json, "NM1", "0");
+                    let NM2 = com_jsonNullCheck(json, "NM2", "0");
+                    let NM3 = com_jsonNullCheck(json, "NM3", "0");
+                    let NM4 = com_jsonNullCheck(json, "NM4", "0");
+                    let NM5 = com_jsonNullCheck(json, "NM5", "0");
+                    let NM6 = com_jsonNullCheck(json, "NM6", "0");
+                    {// 変数初期化
+                        SW2_Global_Initialize();
+                        money = com_jsonNullCheck(json, "money", money);
+                        race = com_jsonNullCheck(json, "shuzoku_name", race);
+                        gender = com_jsonNullCheck(json, "sex", gender);
+                        age = com_jsonNullCheck(json, "age", age);
+                    }
+                    {// 技能レベルの格納
+                        for (let i = 0; i < sw25GinouLv.length; i++) {
+                            sw25GinouLv[i] = parseInt(com_jsonNullCheck(json, "V_GLv" + String(i + 1), sw25GinouLv[i]));
+                            sw25GinouLvUpper[i] = Math.min(sw25GinouLv[i], 17);
+                        }
+                        if (sw25GinouLv[4] > 0 && sw25GinouLv[5] > 0) {
+                            if (sw25GinouLv[4] <= sw25GinouLv[5]) { // ウィザード
+                                wizMin = sw25GinouLv[4];
+                                wizMax = sw25GinouLv[5];
+                            }
+                            else {
+                                wizMin = sw25GinouLv[5];
+                                wizMax = sw25GinouLv[4];
+                            }
+                        }
+                    }
+
+                    let txt_AutoST = "";
+                    let txt_ChoiseST = "";
+                    //自動習得
+                    for (let i = 0; i < sw25AutoSTprop.length; i++) {
+                        txt_AutoST = txt_AutoST + com_jsonNullCheck(json, sw25AutoSTprop[i], "");
+                        if (!(txt_AutoST.endsWith(" "))) {// 空白で終わっていない場合（項目に合致するJSONデータが存在した場合
+                            txt_AutoST = txt_AutoST + " ";
+                        }
+                    }
+                    //選択習得
+                    for (let i = 0; i < json.ST_name.length; i++) {
+                        if (json.ST_name[i] != "") {
+                            if (json.ST_name[i].startsWith("必殺攻撃")) {
+                                hissatsuFlg = true;
+                            }
+                            if (json.ST_name[i].startsWith("クルードテイク") ||
+                                json.ST_name[i].startsWith("掠め取り")) { //ヴァグランツ自動習得特技。各自動習得の戦闘特技と同じ前提名の時のみ自動習得に書く。
+                                if (json.ST_zentei[i].startsWith("スカ") || json.ST_zentei[i].startsWith("ｽｶ")) {
+                                    txt_AutoST.replace("トレジャーハント", json.ST_name[i]);
+                                    continue;
+                                }
+                                else if (json.ST_zentei[i].startsWith("レン") || json.ST_zentei[i].startsWith("ﾚﾝ")) {
+                                    txt_AutoST.replace("サバイバリティ", json.ST_name[i]);
+                                    continue;
+                                }
+                                else if (json.ST_zentei[i].startsWith("セー") || json.ST_zentei[i].startsWith("ｾｰ")) {
+                                    txt_AutoST.replace("鋭い目", json.ST_name[i]);
+                                    continue;
+                                }
+                            }
+                            txt_ChoiseST = txt_ChoiseST + json.ST_name[i] + " ";
+                        }
+                    }
+                    {// テキスト生成処理
+                        var text = "{ \"kind\": \"character\", \"data\": { \n\"name\": \"" + json.pc_name + "\",";
+                        {// メモ作成
+                            text = text + "\n\"memo\": \"PL：シャンク\\n";
+                            text = text + "種族：";
+                            text = text + race;
+                            text = text + "　性別：";
+                            text = text + gender;
+                            text = text + "　年齢：";
+                            text = text + age;
+                            if (sw25_levelFlg) {
+                                text = text + "\\n＝＝＝＝＝技能＝＝＝＝＝\\n";
+                                for (let j = 0; j < sw25GinouLv.length; j++) {
+                                    if (sw25GinouLv[j] > 0) {
+                                        text = text + sw25GinouName[j] + "：" + sw25GinouLv[j] + " ";
+                                    }
+                                }
+                            }
+                            if (sw25_skillFlg) {
+                                text = text + "\\n＝＝＝＝＝自動習得の戦闘特技＝＝＝＝＝\\n";
+                                text = text + txt_AutoST;
+                                text = text + "\\n＝＝＝＝＝選択習得の戦闘特技＝＝＝＝＝\\n";
+                                text = text + txt_ChoiseST;
+                            }
+                            if (sw25_itemFlg) {
+                                text = text + "\\n＝＝＝＝＝所持品＝＝＝＝＝\\n";
+                                text = text + "所持金:" + money + "G\\n";
+                                for (let j = 0; j < json.item_name.length; j++) {
+                                    if (json.item_name[j] != "" && !(json.item_num[j] == "" || json.item_num[j] == "0")) {
+                                        text = text + json.item_name[j] + " " + json.item_num[j] + "個 " + json.item_memo[j] + "\\n";
+                                    }
+                                }
+                            }
+                            text = text + "\\n\",";
+                        }
+                        {// 参照URL設定
+
+                            text = text + "\n\"externalUrl\":\"" + charURL + "\",";
+
+                        }
+                        {// ステータス・パラメータ作成
+                            text = text + "\n\"status\":[";
+                            text = text + "\n{\"label\":\"HP\",\"value\":\"" + json.HP + "\",\"max\":\"" + json.HP + "\"},";
+                            text = text + "\n{\"label\":\"MP\",\"value\":\"" + json.MP + "\",\"max\":\"" + json.MP + "\"},";
+                            text = text + "\n{\"label\":\"防護点\",\"value\":\"" + json.bougo + "\",\"max\":\"" + json.bougo + "\"}";
+                            text = text + "],";
+                            text = text + "\n\"params\":[";
+                            text = text + "\n{\"label\":\"器用\",\"value\":\"" + String(parseInt(N_waza) + parseInt(V_NC1) + parseInt(NS1) + parseInt(NM1)) + "\"},";
+                            text = text + "\n{\"label\":\"敏捷\",\"value\":\"" + String(parseInt(N_waza) + parseInt(V_NC2) + parseInt(NS2) + parseInt(NM2)) + "\"},";
+                            text = text + "\n{\"label\":\"筋力\",\"value\":\"" + String(parseInt(N_karada) + parseInt(V_NC3) + parseInt(NS3) + parseInt(NM3)) + "\"},";
+                            text = text + "\n{\"label\":\"生命\",\"value\":\"" + String(parseInt(N_karada) + parseInt(V_NC4) + parseInt(NS4) + parseInt(NM4)) + "\"},";
+                            text = text + "\n{\"label\":\"知力\",\"value\":\"" + String(parseInt(N_kokoro) + parseInt(V_NC5) + parseInt(NS5) + parseInt(NM5)) + "\"},";
+                            text = text + "\n{\"label\":\"精神\",\"value\":\"" + String(parseInt(N_kokoro) + parseInt(V_NC6) + parseInt(NS6) + parseInt(NM6)) + "\"},";
+                            text = text + "\n{\"label\":\"冒険者レベル\",\"value\":\"" + json.lv + "\"},";
+                            text = text + "\n{\"label\":\"生命抵抗\",\"value\":\"" + json.life_resist + "\"},";
+                            text = text + "\n{\"label\":\"精神抵抗\",\"value\":\"" + json.mental_resist + "\"},";
+                            for (let j = 0; j < sw25GinouName.length; j++) { // ルーンマスター
+                                if (sw25GinouLv[j] == 0 || sw25GinouLv[j] === undefined) {
+                                    continue;
+                                }
+                                else {
+                                    text = text + "\n{\"label\":\"" + sw25GinouName[j] + "\",\"value\":\"" + sw25GinouLv[j] + "\"},";
+                                }
+                            }
+                            if (wizMin > 0) {
+                                text = text + "\n{\"label\":\"ウィザード\",\"value\":\"" + wizMax + "\"},";
+                                text = text + "\n{\"label\":\"深智魔法行使可能レベル\",\"value\":\"" + wizMin + "\"},";
+                            }
+                            text = text + "\n{\"label\":\"回避\",\"value\":\"" + json.kaihi + "\"},";
+                            text = text + "\n{\"label\":\"移動力\",\"value\":\"" + json.ido + "\"}";
+                            text = text + "],";
+                        }
+                        {// チャットパレット作成
+                            text = text + "\n\"commands\":\"";
+                            if (true) {
+                                {
+                                    {// ステータス
+                                        text = text + "＝＝＝＝＝ステータス＝＝＝＝＝\\n";
+                                        text = text + "{HP} 【現在HP】\\n";
+                                        text = text + "{MP} 【現在MP】\\n";
+                                        text = text + "{防護点} 【防護点】\\n";
+                                    }
+                                    {// パラメータ
+                                        text = text + "＝＝＝＝＝パラメータ＝＝＝＝＝\\n";
+                                        text = text + "c({器用}/6) 【器用ボーナス】\\n";
+                                        text = text + "c({敏捷}/6) 【敏捷ボーナス】\\n";
+                                        text = text + "c({筋力}/6) 【筋力ボーナス】\\n";
+                                        text = text + "c({生命}/6) 【生命ボーナス】\\n";
+                                        text = text + "c({知力}/6) 【知力ボーナス】\\n";
+                                        text = text + "c({精神}/6) 【精神ボーナス】\\n";
+                                        text = text + "{冒険者レベル} 【冒険者レベル】\\n";
+                                        text = text + "{生命抵抗} 【生命抵抗力】\\n";
+                                        text = text + "{精神抵抗} 【精神抵抗力】\\n";
+                                        for (let j = 0; j < sw25GinouName.length; j++) { // ルーンマスター
+                                            if (sw25GinouLv[j] == 0) {
+                                                continue;
+                                            }
+                                            else {
+                                                text = text + "{" + sw25GinouName[j] + "} 【" + sw25GinouName[j] + " レベル】\\n";
+                                            }
+                                        }
+                                        if (wizMin > 0) {
+                                            text = text + "{ウィザード} 【ウィザード レベル】\\n";
+                                            text = text + "{深智魔法行使可能レベル} 【深智魔法行使可能レベル】\\n";
+                                        }
+                                        text = text + "{回避}\\n";
+                                        text = text + "{移動力}\\n";
+                                    }
+                                    {// 非戦闘系判定
+                                        text = text + "＝＝＝＝＝非戦闘系判定＝＝＝＝＝ \\n";
+                                        text = text + "2d6+{冒険者レベル}+({器用}/6) 冒険者＋器用 \\n";
+                                        text = text + "2d6+{冒険者レベル}+({敏捷}/6) 冒険者＋敏捷 \\n";
+                                        text = text + "2d6+{冒険者レベル}+({筋力}/6) 冒険者＋筋力 \\n";
+                                        text = text + "2d6+{冒険者レベル}+({生命}/6) 冒険者＋生命力 \\n";
+                                        text = text + "2d6+{冒険者レベル}+({知力}/6) 冒険者＋知力 \\n";
+                                        text = text + "2d6+{冒険者レベル}+({精神}/6) 冒険者＋精神力 \\n\\n";
+                                        if (sw25GinouLv[9] > 0) {
+                                            text = text + "2d6+{スカウト}+({器用}/6) スカウト技巧 \\n";
+                                            text = text + "2d6+{スカウト}+({敏捷}/6) スカウト運動 \\n";
+                                            text = text + "2d6+{スカウト}+({知力}/6) スカウト観察 \\n\\n";
+                                        }
+                                        if (sw25GinouLv[10] > 0) {
+                                            text = text + "2d6+{レンジャー}+({器用}/6) レンジャー技巧 \\n";
+                                            text = text + "2d6+{レンジャー}+({敏捷}/6) レンジャー運動 \\n";
+                                            text = text + "2d6+{レンジャー}+({知力}/6) レンジャー観察 \\n\\n";
+                                        }
+                                        if (sw25GinouLv[11] > 0) {
+                                            text = text + "2d6+{セージ}+({知力}/6) セージ知識 \\n";
+                                        }
+                                        if (sw25GinouLv[13] > 0) {
+                                            text = text + "2d6+{バード}+({知力}/6) バード知識 \\n";
+                                        }
+                                        if (sw25GinouLv[15] > 0) {
+                                            text = text + "2d6+{ライダー}+({敏捷}/6) ライダー運動 \\n";
+                                            text = text + "2d6+{ライダー}+({知力}/6) ライダー知識 \\n";
+                                            text = text + "2d6+{ライダー}+({知力}/6) ライダー観察 \\n";
+                                        }
+                                        if (sw25GinouLv[14] > 0) {
+                                            text = text + "2d6+{アルケミスト}+({知力}/6) アルケミスト知識 \\n";
+                                        }
+                                        if (sw25GinouLv[24] > 0) {
+                                            text = text + "2d6+{ジオマンサー}+({知力}/6) ジオマンサー観察 \\n";
+                                        }
+                                    }
+                                    {// 技能判定
+                                        text = text + "\\n＝＝＝＝＝技能判定＝＝＝＝＝ \\n";
+                                        {// バード
+                                            if (sw25GinouLv[13] > 0) {
+                                                text = text + "2d6+{バード}+({精神}/6)+" + json.ejuka_hit_extend + " 呪歌演奏 \\n";
+                                                text = text + "k10+{バード}+({精神}/6)+" + json.ejuka_hit_extend + " ダメージ／呪歌 \\n";
+                                                text = text + "k10+{バード}+({精神}/6)+" + json.ejuka_hit_extend + "H+0 半減／呪歌 \\n";
+                                            }
+                                            if (sw25GinouLv[13] >= 5) {
+                                                text = text + "k20+{バード}+({精神}/6)+" + json.ejuka_hit_extend + " ダメージ／呪歌 \\n";
+                                                text = text + "k20+{バード}+({精神}/6)+" + json.ejuka_hit_extend + "H+0 半減／呪歌 \\n";
+                                            }
+                                            if (sw25GinouLv[13] >= 10) {
+                                                text = text + "k30+{バード}+({精神}/6)+" + json.ejuka_hit_extend + " ダメージ／呪歌 \\n";
+                                                text = text + "k30+{バード}+({精神}/6)+" + json.ejuka_hit_extend + "H+0 半減／呪歌 \\n";
+                                            }
+                                            if (sw25GinouLv[13] >= 1) {
+                                                text = text + "k0[13]+{バード}+({精神}/6)+" + json.ejuka_hit_extend + " 回復量／呪歌 \\n";
+                                            }
+                                            if (sw25GinouLv[13] >= 5) {
+                                                text = text + "k10[13]+{バード}+({精神}/6)+" + json.ejuka_hit_extend + " 回復量／呪歌 \\n";
+                                            }
+                                            if (sw25GinouLv[13] >= 1) {
+                                                text = text + "k20[13]+{バード}+({精神}/6)+" + json.ejuka_hit_extend + " 回復量／呪歌 \\n";
+                                            }
+                                            if (sw25GinouLv[13] >= 5) {
+                                                text = text + "k30[13]+{バード}+({精神}/6)+" + json.ejuka_hit_extend + " 回復量／呪歌 \\n";
+                                            }
+                                            if (sw25GinouLv[13] >= 10) {
+                                                text = text + "k40[13]+{バード}+({精神}/6)+" + json.ejuka_hit_extend + " 回復量／呪歌 \\n";
+                                            }
+                                        }
+                                        {// アルケミスト
+                                            if (sw25GinouLv[14] > 0) {
+                                                text = text + "2d6+{アルケミスト}+({知力}/6) 賦術 \\n";
+                                            }
+                                        }
+                                    }
+                                    {// 戦闘前判定
+                                        text = text + "\\n＝＝＝＝＝戦闘前判定＝＝＝＝＝ \\n";
+                                        if (sw25GinouLv[9] > 0) {
+                                            text = text + "2d6+{スカウト}+({敏捷}/6)+" + json.sensei_mod + " スカウト先制力 \\n";
+                                        }
+                                        if (sw25GinouLv[17] > 0) {
+                                            text = text + "2d6+{ウォーリーダー}+({敏捷}/6)+" + json.sensei_mod + " ウォーリーダー先制力 \\n";
+                                            text = text + "2d6+{ウォーリーダー}+({知力}/6)+1+" + json.sensei_mod + " ウォーリーダー先制力(軍師の知略) \\n";
+                                        }
+                                        if (sw25GinouLv[11] > 0) {
+                                            text = text + "2d6+{セージ}+({知力}/6)+" + json.mamono_chishiki_mod + " セージ魔物知識 \\n";
+                                        }
+                                        if (sw25GinouLv[15] > 0) {
+                                            text = text + "2d6+{ライダー}+({知力}/6)+" + json.mamono_chishiki_mod + " ライダー魔物知識 \\n";
+                                        }
+                                    }
+                                    {// 戦闘中判定
+                                        text = text + "\\n＝＝＝＝＝戦闘中判定＝＝＝＝＝ \\n";
+                                        text = text + "2d6+{生命抵抗} 生命抵抗力 \\n";
+                                        text = text + "2d6+{精神抵抗} 精神抵抗力 \\n";
+                                        text = text + "2d6+{回避} 回避力 \\n";
+                                    }
+                                    {// 基本の命中判定
+                                        if (json.arms_hit_tokugi == "") {
+                                            json.arms_hit_tokugi = "0";
+                                        }
+                                        if (sw25GinouLv[0] > 0) {
+                                            text = text + "2d6+{ファイター}+({器用}/6)+" + json.arms_hit_tokugi + " ファイター命中 \\n";
+                                        }
+                                        if (sw25GinouLv[1] > 0) {
+                                            text = text + "2d6+{グラップラー}+({器用}/6)+" + json.arms_hit_tokugi + " グラップラー命中 \\n";
+                                        }
+                                        if (sw25GinouLv[2] > 0) {
+                                            text = text + "2d6+{フェンサー}+({器用}/6)+" + json.arms_hit_tokugi + " フェンサー命中 \\n";
+                                        }
+                                        if (sw25GinouLv[3] > 0) {
+                                            text = text + "2d6+{シューター}+({器用}/6)+" + json.arms_hit_tokugi + " シューター命中 \\n";
+                                        }
+                                        if (sw25GinouLv[25] > 0) {
+                                            text = text + "2d6+{バトルダンサー}+({器用}/6)+" + json.arms_hit_tokugi + " バトルダンサー命中 \\n";
+                                        }
+                                    }
+                                    {// 武器毎命中・ダメージ
+                                        for (let j = 0; j < json.arms_name.length; j++) {
+                                            if (json.arms_hit_mod[j] == "") {
+                                                json.arms_hit_mod[j] = "0";
+                                            }
+                                            if (json.arms_damage_mod[j] == "") {
+                                                json.arms_damage_mod[j] = "0";
+                                            }
+                                            if (json.arms_cate[j] != "" && json.arms_critical[j] != "") {
+                                                let weaponMeleeFlg = false;
+                                                for (let k = 0; k < sw25ArmType.length; k++) {
+                                                    if (!(sw25ArmType[k] == json.arms_cate[j])) {
+                                                        continue;
+                                                    }
+                                                    if (sw25ArmMeleeType[k] = 1) {
+                                                        weaponMeleeFlg = true;
+                                                    }
+                                                    text = text + "2d6+";
+                                                    text = text + json.arms_hit[j] + " " + json.arms_name[j] + "命中 \\n";
+                                                    if (k == 11) {// ガン
+                                                        if (dam_bullet[sw25GinouLv[8]]?.length !== undefined) {
+                                                            for (i = 0; i <= dam_bullet[sw25GinouLv[8]].length - 1; i++) {
+                                                                text = text + "k" + dam_bullet[sw25GinouLv[8]][i] + "[" + json.arms_critical[j] + "]+" + json.arms_damage[j] + " " + json.arms_name[j] + "ダメージ \\n";
+                                                            }/*
+                    if(sw25GinouLv[8] >= 2) {
+                    text = text + "k20[("+json.arms_critical[j]+"-1)]+"+json.arms_damage[j]+" "+json.arms_name[j]+"【クリティカル・バレット】ダメージ \\n";
+                    }
+                    if(sw25GinouLv[8] >= 9) {
+                    text = text + "k30[("+json.arms_critical[j]+"-1)]+"+json.arms_damage[j]+" "+json.arms_name[j]+"【レーザー・バレット】ダメージ \\n";
+                    }*/
+                                                        }
+                                                        if (heal_bullet[sw25GinouLv[8]]?.length !== undefined) {
+                                                            for (i = 0; i <= heal_bullet[sw25GinouLv[8]].length - 1; i++) {
+                                                                text = text + "k" + heal_bullet[sw25GinouLv[8]][i] + "[13]+" + json.arms_damage[j] + " " + json.arms_name[j] + "回復量 \\n";
+                                                            }
+                                                        }
+                                                        break;
+                                                    }
+                                                    else {
+                                                        text = text + "k" + json.arms_iryoku[j] + "＠" + json.arms_critical[j] + "+" + json.arms_damage[j] + " " + json.arms_name[j] + "ダメージ \\n";
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    {// 魔法技能系の判定（魔法行使、ダメージ、回復等）
+                                        text = text + "\\n\\n＝＝＝＝＝魔法系判定＝＝＝＝＝ \\n";
+                                        {// ソーサラー
+                                            if (sw25GinouLvUpper[4] > 0) {
+                                                text = text + "＝＝＝真語魔法＝＝＝\\n2d6+{ソーサラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM5 + " 真語魔法行使 \\n";
+                                            }
+                                            if (dam_sor[sw25GinouLvUpper[4] - 1]?.length !== undefined) {
+                                                for (i = 0; i <= dam_sor[sw25GinouLvUpper[4] - 1].length - 1; i++) {
+                                                    text = text + "k" + dam_sor[sw25GinouLvUpper[4] - 1][i] + "[10]+{ソーサラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM5 + " ダメージ／真語魔法 \\n";
+                                                    text = text + "k" + dam_sor[sw25GinouLvUpper[4] - 1][i] + "[13]+{ソーサラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM5 + "H+0 半減／真語魔法 \\n";
+                                                }
+                                                if (sw25GinouLvUpper[4] >= 12) {
+                                                    text = text + "k40[9]+{ソーサラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM5 + " 【シャイニング・スポット】ダメージ／真語魔法 \\n";
+                                                }
+                                            }
+                                        }
+                                        {// コンジャラー
+                                            if (sw25GinouLvUpper[5] > 0) {
+                                                text = text + "＝＝＝操霊魔法＝＝＝\\n2d6+{コンジャラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM6 + " 操霊魔法行使 \\n";
+                                            }
+                                            if (dam_con[sw25GinouLvUpper[5] - 1]?.length !== undefined) {
+                                                for (i = 0; i <= dam_con[sw25GinouLvUpper[5] - 1].length - 1; i++) {
+                                                    text = text + "k" + dam_con[sw25GinouLvUpper[5] - 1][i] + "[10]+{コンジャラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM6 + " ダメージ／操霊魔法 \\n";
+                                                    text = text + "k" + dam_con[sw25GinouLvUpper[5] - 1][i] + "[13]+{コンジャラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM6 + "H+0 半減／操霊魔法 \\n";
+                                                }
+                                            }
+                                            if (heal_con[sw25GinouLvUpper[5] - 1]?.length !== undefined) {
+                                                for (i = 0; i <= heal_con[sw25GinouLvUpper[5] - 1].length - 1; i++) {
+                                                    text = text + "k" + heal_con[sw25GinouLvUpper[5] - 1][i] + "[13]+{コンジャラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM6 + " 回復量／操霊魔法 \\n";
+                                                }
+                                            }
+                                        }
+                                        {// プリースト
+                                            if (sw25GinouLvUpper[6] > 0) {
+                                                text = text + "＝＝＝神聖魔法＝＝＝\\n2d6+{プリースト}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM7 + " 神聖魔法行使 \\n";
+                                            }
+                                            if (dam_pri[sw25GinouLvUpper[6] - 1]?.length !== undefined) {
+                                                for (i = 0; i <= dam_pri[sw25GinouLvUpper[6] - 1].length - 1; i++) {
+                                                    text = text + "k" + dam_pri[sw25GinouLvUpper[6] - 1][i] + "[10]+{プリースト}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM7 + " ダメージ／神聖魔法 \\n";
+                                                    text = text + "k" + dam_pri[sw25GinouLvUpper[6] - 1][i] + "[13]+{プリースト}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM7 + "H+0 半減／神聖魔法 \\n";
+                                                }
+                                            }
+                                            if (heal_pri[sw25GinouLvUpper[6] - 1]?.length !== undefined) {
+                                                for (i = 0; i <= heal_pri[sw25GinouLvUpper[6] - 1].length - 1; i++) {
+                                                    text = text + "k" + heal_pri[sw25GinouLvUpper[6] - 1][i] + "[13]+{プリースト}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM7 + " 回復量／神聖魔法 \\n";
+                                                }
+                                            }
+                                        }
+                                        {// マギテック
+                                            if (sw25GinouLvUpper[8] > 0) {
+                                                text = text + "＝＝＝魔動機術＝＝＝\\n2d6+{マギテック}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM9 + " 魔動機術行使 \\n";
+                                            }
+                                            if (dam_mag[sw25GinouLvUpper[8] - 1]?.length !== undefined) {
+                                                for (i = 0; i <= dam_mag[sw25GinouLvUpper[8] - 1].length - 1; i++) {
+                                                    text = text + "k" + dam_mag[sw25GinouLvUpper[8] - 1][i] + "[10]+{マギテック}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM9 + " ダメージ／魔動機術 \\n";
+                                                    text = text + "k" + dam_mag[sw25GinouLvUpper[8] - 1][i] + "[13]+{マギテック}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM9 + "H+0 半減／魔動機術 \\n";
+                                                }
+                                                if (sw25GinouLvUpper[8] >= 8) {
+                                                    text = text + "k50[10]+{マギテック}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM9 + " 【パイルシューター】ダメージ／魔動機術 \\n";
+                                                }
+                                                if (sw25GinouLvUpper[8] >= 14) {
+                                                    text = text + "k100[10]+{マギテック}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM9 + " 【オメガシューター】ダメージ／魔動機術 \\n";
+                                                }
+                                            }
+                                            if (heal_mag[sw25GinouLvUpper[8] - 1]?.length !== undefined) {
+                                                for (i = 0; i <= heal_mag[sw25GinouLvUpper[8] - 1].length - 1; i++) {
+                                                    text = text + "k" + heal_mag[sw25GinouLvUpper[8] - 1][i] + "[13]+{マギテック}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM9 + " 回復量／魔動機術 \\n";
+                                                }
+                                            }
+                                        }
+                                        {// フェアリーテイマー
+                                            if (sw25GinouLvUpper[7] > 0) {
+                                                text = text + "＝＝＝妖精魔法＝＝＝\\n2d6+{フェアリーテイマー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM8 + " 妖精魔法行使 \\n";
+                                            }
+                                            if (dam_fai[sw25GinouLvUpper[7] - 1]?.length !== undefined) {
+                                                for (i = 0; i <= dam_fai[sw25GinouLvUpper[7] - 1].length - 1; i++) {
+                                                    text = text + "k" + dam_fai[sw25GinouLvUpper[7] - 1][i] + "[10]+{フェアリーテイマー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM8 + " ダメージ／妖精魔法 \\n";
+                                                    text = text + "k" + dam_fai[sw25GinouLvUpper[7] - 1][i] + "[13]+{フェアリーテイマー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM8 + "H+0 半減／妖精魔法 \\n";
+                                                }
+                                            }
+                                        }
+                                        {// ドルイド
+                                            if (sw25GinouLvUpper[23] > 0) {
+                                                text = text + "＝＝＝森羅魔法＝＝＝\\n2d6+{ドルイド}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM24 + " 森羅魔法行使 \\n";
+                                            }
+                                            if (dam_dru[sw25GinouLvUpper[23] - 1]?.length !== undefined) {
+                                                for (i = 0; i <= dam_dru[sw25GinouLvUpper[23] - 1].length - 1; i++) {
+                                                    text = text + "k" + dam_dru[sw25GinouLvUpper[23] - 1][i] + "[10]+{ドルイド}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM24 + " ダメージ／森羅魔法 \\n";
+                                                    text = text + "k" + dam_dru[sw25GinouLvUpper[23] - 1][i] + "[13]+{ドルイド}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM24 + "H+0 半減／森羅魔法 \\n";
+                                                }
+                                            }
+                                            if (phy_dru[sw25GinouLvUpper[23] - 1]?.length !== undefined) {
+                                                for (i = 0; i <= phy_dru[sw25GinouLvUpper[23] - 1].length - 1; i++) {
+                                                    text = text + "Dru[" + phy_dru[sw25GinouLvUpper[23] - 1][i] + "]+{ドルイド}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM24 + " ダメージ／森羅魔法 \\n";
+                                                }
+                                            }
+                                            if (sw25GinouLvUpper[23] >= 2) {
+                                                text = text + "k10＠13 【ナチュラルパワー】／森羅魔法 \\n";
+                                            }
+                                            if (sw25GinouLvUpper[23] >= 12) {
+                                                text = text + "k30＠13 【ナチュラルパワーⅡ】／森羅魔法 \\n";
+                                            }
+                                        }
+                                        {// デーモンルーラー
+                                            if (sw25GinouLvUpper[16] > 0) {
+                                                text = text + "＝＝＝召異魔法＝＝＝\\n2d6+{デーモンルーラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM17 + " 召異魔法行使 \\n";
+                                            }
+                                            if (dam_dem[sw25GinouLvUpper[16] - 1]?.length !== undefined) {
+                                                for (i = 0; i <= dam_dem[sw25GinouLvUpper[16] - 1].length - 1; i++) {
+                                                    text = text + "k" + dam_dem[sw25GinouLvUpper[16] - 1][i] + "[10]+{デーモンルーラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM17 + " ダメージ／召異魔法 \\n";
+                                                    text = text + "k" + dam_dem[sw25GinouLvUpper[16] - 1][i] + "[13]+{デーモンルーラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM17 + "H+0 半減／召異魔法 \\n";
+                                                }
+                                                if (sw25GinouLvUpper[16] >= 11) {
+                                                    text = text + "k50+{デーモンルーラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM17 + " ダメージ／デモンズブレード \\n";
+                                                }
+                                                if (sw25GinouLvUpper[16] >= 14) {
+                                                    text = text + "k70+{デーモンルーラー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM17 + " ダメージ／デモンズブレード \\n";
+                                                }
+                                            }
+                                        }
+                                        {// ウィザード
+                                            let wizpower = "";
+                                            if (wizMin > 0) {
+                                                text = text + "＝＝＝深智魔法＝＝＝\\n2d6+{ウィザード}+({知力}/6) 深智魔法行使 \\n";
+                                                if (parseInt(json.MM5) > parseInt(json.MM6)) {
+                                                    wizpower = json.MM5;
+                                                }
+                                                else {
+                                                    wizpower = json.MM6;
+                                                }
+                                            }
+                                            if (dam_wiz[wizMin]?.length !== undefined) {
+                                                for (i = 0; i <= dam_wiz[wizMin].length - 1; i++) {
+                                                    text = text + "k" + dam_wiz[wizMin][i] + "[10]+{ウィザード}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + wizpower + " ダメージ／深智魔法 \\n";
+                                                    text = text + "k" + dam_wiz[wizMin][i] + "[13]+{ウィザード}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + wizpower + "H+0 半減／深智魔法 \\n";
+                                                }
+                                            }
+                                        }
+                                        {// アビスゲイザー
+                                            if (sw25GinouLvUpper[26] > 0) {
+                                                text = text + "＝＝＝奈落魔法＝＝＝\\n2d6+{アビスゲイザー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM27 + " 奈落魔法行使 \\n";
+                                            }
+                                            // for (i = 0; i <= dam_abyss[sw25GinouLvUpper[26] - 1].length - 1; i++) {
+                                            //     text = text + "k" + dam_abyss[sw25GinouLvUpper[26] - 1][i] + "[10]+{アビスゲイザー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM27 + " ダメージ／奈落魔法 \\n";
+                                            //     text = text + "k" + dam_abyss[sw25GinouLvUpper[26] - 1][i] + "[13]+{アビスゲイザー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM27 + "H+0 半減／奈落魔法 \\n";
+                                            // }
+                                            // for (i = 0; i <= heal_abyss[sw25GinouLvUpper[26] - 1].length - 1; i++) {
+                                            //     text = text + "k" + heal_abyss[sw25GinouLvUpper[26] - 1][i] + "[13]+{アビスゲイザー}+({知力}/6)+" + json.arms_maryoku_sum + "+" + json.MM_Tokugi + "+" + json.MM27 + " 回復量／奈落魔法 \\n";
+                                            // }
+                                        }
+                                        /*            
+                                                    {// ビブリオマンサー
+                                                        if(sw25GinouLv[28] > 0 ){
+                                                        text = text + "＝＝＝秘奥魔法＝＝＝\\n2d6+{アビスゲイザー}+({知力}/6)+"+json.arms_maryoku_sum+"+"+json.MM_Tokugi+"+"+json.MM29+" 秘奥魔法行使 \\n";
+                                                        }
+                                                        for(i=0; i <= dam_bib[sw25GinouLv[28]-1].length - 1; i++){
+                                                        text = text + "k"+dam_bib[sw25GinouLv[28]-1][i]+"[10]+{アビスゲイザー}+({知力}/6)+"+json.arms_maryoku_sum+"+"+json.MM_Tokugi+"+"+json.MM29+" ダメージ／秘奥魔法 \\n";
+                                                        text = text + "k"+dam_bib[sw25GinouLv[28]-1][i]+"[13]+{アビスゲイザー}+({知力}/6)+"+json.arms_maryoku_sum+"+"+json.MM_Tokugi+"+"+json.MM29+"H+0 半減／秘奥魔法 \\n";
+                                                        }
+                                                        for(i=0; i <= heal_bib[sw25GinouLv[28]-1].length - 1; i++){
+                                                        text = text + "k"+heal_bib[sw25GinouLv[28]-1][i]+"[13]+{アビスゲイザー}+({知力}/6)+"+json.arms_maryoku_sum+"+"+json.MM_Tokugi+"+"+json.MM29+" 回復量／秘奥魔法 \\n";
+                                                        }
+                                                        if(sw25GinouLv[28] >= 7){
+                                                        text = text + "k40[13] 回復量／秘奥魔法 \\n";
+                                                        }
+                                                    }
+                                        */
+                                        {// 練技
+                                            if (json.ES_name.length > 0) {
+                                                let firstflag = true;
+                                                for (let j = 0; j < json.ES_name.length; j++) {
+                                                    if (json.ES_name[j] != "") {
+                                                        if (firstflag == true) {
+                                                            text = text + "\\n＝＝＝＝＝練技＝＝＝＝＝\\n";
+                                                            firstflag = false;
+                                                        }
+                                                        text = text + json.ES_name[j] + "\\n";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        {// 呪歌
+                                            if (json.JK_name.length > 0) {
+                                                let firstflag = true;
+                                                for (let j = 0; j < json.JK_name.length; j++) {
+                                                    if (json.JK_name[j] != "") {
+                                                        if (firstflag == true) {
+                                                            text = text + "\\n＝＝＝＝＝呪歌＝＝＝＝＝\\n";
+                                                            firstflag = false;
+                                                        }
+                                                        text = text + json.JK_name[j] + "\\n";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        {// 騎芸
+                                            if (json.KG_name.length > 0) {
+                                                let firstflag = true;
+                                                for (let j = 0; j < json.KG_name.length; j++) {
+                                                    if (json.KG_name[j] != "") {
+                                                        if (firstflag == true) {
+                                                            text = text + "\\n＝＝＝＝＝騎芸＝＝＝＝＝\\n";
+                                                            firstflag = false;
+                                                        }
+                                                        text = text + json.KG_name[j] + "\\n";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        {// 賦術
+                                            if (json.HJ_name.length > 0) {
+                                                let firstflag = true;
+                                                for (let j = 0; j < json.HJ_name.length; j++) {
+                                                    if (json.HJ_name[j] != "") {
+                                                        if (firstflag == true) {
+                                                            text = text + "\\n＝＝＝＝＝賦術＝＝＝＝＝\\n";
+                                                            firstflag = false;
+                                                        }
+                                                        text = text + json.HJ_name[j] + "\\n";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        {// 鼓咆／陣率
+                                            if (json.HO_name.length > 0) {
+                                                let firstflag = true;
+                                                for (let j = 0; j < json.HO_name.length; j++) {
+                                                    if (json.HO_name[j] != "") {
+                                                        if (firstflag == true) {
+                                                            text = text + "\\n＝＝＝＝＝鼓咆／陣率＝＝＝＝＝\\n";
+                                                            firstflag = false;
+                                                        }
+                                                        text = text + json.HO_name[j] + "\\n";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            text = text + "\"";
+                        }
+                        text = text + "\n}";
+                        text = text + "\n}";
+
+                        var Text = text;
+                        document.forms.resultform.myresult.value = Text;
+                        navigator.clipboard.writeText(Text)
+                            .then(function () {
+                                alert('クリップボードに出力・皇\nココフォリア盤面に張り付けてくれ(^^)');
+                            })
+                            .catch(err => {
+                                alert('下のボックスの文字列をコピペしてココフォリア盤面に張り付けてくれ(^^)');
+                            });
+                        //JSONP処理コールバック関数定義終了
+                    }
+                }
+            }
+            document.body.appendChild(s);
+        } else {
             //URLが間違っている場合
+            console.log(charURL)
             errURL()
         }
     };
@@ -862,6 +1563,9 @@
             "父さんのいうとおりだ 俺は磯部じゃない\n俺は…\n\nURLエラーを滅ぼす者だ！！",
             "ウワアアアアアア！ウオォ！URLエラアーーーーーーーー！！！",
             "これほどの力を持つURLが現れたのは初めてだ　この死の歯車でエラーをぶっ殺す！",
+            "お前、今自分がどういう状況か分かってんのか？\nうな重で例えるなら俺が鰻、お前が白米だ。\nたっぷりエラーの染み込んだ…な。",
+            "https://m.youtube.com/watch?v=2hasRHh6D4U",
+            "しばらく会わなェ内にエラーになっちまったな…マミ",
         ]
         myrand = Math.floor(Math.random() * errlist.length);
         alert(errlist[myrand]);
@@ -877,6 +1581,9 @@
     }
     function checkmayokingCharacterSheets(url) {
         return (url.hostname === "character-sheets.appspot.com" && url.pathname.match(/\/mayoking\/edit\.html$/));
+    }
+    function checkvampireCharacterSheets(url) {
+        return (url.hostname === "charasheet.vampire-blood.net");
     }
     function checkYutorize(url) {
         return ((url.hostname === "yutorize.2-d.jp" || document.getElementById('YutoLimiter').checked) && url.pathname.match(/\/dx3rd\//));
