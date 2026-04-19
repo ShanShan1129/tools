@@ -950,6 +950,12 @@
                     let NM4 = com_jsonNullCheck(json, "NM4", "0");
                     let NM5 = com_jsonNullCheck(json, "NM5", "0");
                     let NM6 = com_jsonNullCheck(json, "NM6", "0");
+                    let NP1 = com_jsonNullCheck(json, "NP1", "0");
+                    let NP2 = com_jsonNullCheck(json, "NP2", "0");
+                    let NP3 = com_jsonNullCheck(json, "NP3", "0");
+                    let NP4 = com_jsonNullCheck(json, "NP4", "0");
+                    let NP5 = com_jsonNullCheck(json, "NP5", "0");
+                    let NP6 = com_jsonNullCheck(json, "NP6", "0");
                     {// 変数初期化
                         SW2_Global_Initialize();
                         money = com_jsonNullCheck(json, "money", money);
@@ -1054,12 +1060,12 @@
                             text = text + "\n{\"label\":\"防護点\",\"value\":\"" + json.bougo + "\",\"max\":\"" + json.bougo + "\"}";
                             text = text + "],";
                             text = text + "\n\"params\":[";
-                            text = text + "\n{\"label\":\"器用\",\"value\":\"" + String(parseInt(N_waza) + parseInt(V_NC1) + parseInt(NS1) + parseInt(NM1)) + "\"},";
-                            text = text + "\n{\"label\":\"敏捷\",\"value\":\"" + String(parseInt(N_waza) + parseInt(V_NC2) + parseInt(NS2) + parseInt(NM2)) + "\"},";
-                            text = text + "\n{\"label\":\"筋力\",\"value\":\"" + String(parseInt(N_karada) + parseInt(V_NC3) + parseInt(NS3) + parseInt(NM3)) + "\"},";
-                            text = text + "\n{\"label\":\"生命\",\"value\":\"" + String(parseInt(N_karada) + parseInt(V_NC4) + parseInt(NS4) + parseInt(NM4)) + "\"},";
-                            text = text + "\n{\"label\":\"知力\",\"value\":\"" + String(parseInt(N_kokoro) + parseInt(V_NC5) + parseInt(NS5) + parseInt(NM5)) + "\"},";
-                            text = text + "\n{\"label\":\"精神\",\"value\":\"" + String(parseInt(N_kokoro) + parseInt(V_NC6) + parseInt(NS6) + parseInt(NM6)) + "\"},";
+                            text = text + "\n{\"label\":\"器用\",\"value\":\"" + String(parseInt(NP1)) + "\"},";
+                            text = text + "\n{\"label\":\"敏捷\",\"value\":\"" + String(parseInt(NP2)) + "\"},";
+                            text = text + "\n{\"label\":\"筋力\",\"value\":\"" + String(parseInt(NP3)) + "\"},";
+                            text = text + "\n{\"label\":\"生命\",\"value\":\"" + String(parseInt(NP4)) + "\"},";
+                            text = text + "\n{\"label\":\"知力\",\"value\":\"" + String(parseInt(NP5)) + "\"},";
+                            text = text + "\n{\"label\":\"精神\",\"value\":\"" + String(parseInt(NP6)) + "\"},";
                             text = text + "\n{\"label\":\"冒険者レベル\",\"value\":\"" + json.lv + "\"},";
                             text = text + "\n{\"label\":\"生命抵抗\",\"value\":\"" + json.life_resist + "\"},";
                             text = text + "\n{\"label\":\"精神抵抗\",\"value\":\"" + json.mental_resist + "\"},";
@@ -1514,6 +1520,20 @@
                                                 }
                                             }
                                         }
+                                        // {// TODO:ビブリオ未着手
+                                        //     if (json.HO_name.length > 0) {
+                                        //         let firstflag = true;
+                                        //         for (let j = 0; j < json.HO_name.length; j++) {
+                                        //             if (json.HO_name[j] != "") {
+                                        //                 if (firstflag == true) {
+                                        //                     text = text + "\\n＝＝＝＝＝鼓咆／陣率＝＝＝＝＝\\n";
+                                        //                     firstflag = false;
+                                        //                 }
+                                        //                 text = text + json.HO_name[j] + "\\n";
+                                        //             }
+                                        //         }
+                                        //     }
+                                        // }
                                     }
                                 }
                             }
