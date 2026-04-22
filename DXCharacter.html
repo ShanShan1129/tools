@@ -1198,6 +1198,12 @@
                                     }
                                     {// 戦闘前判定
                                         text = text + "\\n＝＝＝＝＝戦闘前判定＝＝＝＝＝ \\n";
+                                        if (json.sensei_mod == "") {
+                                            json.sensei_mod = "0";
+                                        }
+                                        if (json.mamono_chishiki_mod == "") {
+                                            json.mamono_chishiki_mod = "0";
+                                        }
                                         if (sw25GinouLv[9] > 0) {
                                             text = text + "2d6+{スカウト}+({敏捷}/6)+" + json.sensei_mod + " スカウト先制力 \\n";
                                         }
