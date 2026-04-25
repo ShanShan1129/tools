@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>顔だけ移すやつ・皇</title>
+</head>
+<body>
+  <h2>コピー元のコマのデータからコピー先のデータに顔を移すぞ　来い</h2>
+
+  <div>
+    <p>コピー元JSON</p>
+    <textarea id="source" rows="10" cols="60"></textarea>
+  </div>
+
+  <div>
+    <p>コピー先JSON</p>
+    <textarea id="target" rows="10" cols="60"></textarea>
+  </div>
+
+  <br>
+
+  <button onclick="copyFaces()">マゼマゼの実・皇（結果をクリップボードへ）</button>
+
+  <script>
+    async function copyFaces() {
+      try {
+        const sourceText = document.getElementById("source").value;
+        const targetText = document.getElementById("target").value;
+
+        const sourceJson = JSON.parse(sourceText);
+        const targetJson = JSON.parse(targetText);
+
+        if (!sourceJson.data || !targetJson.data) {
+          throw new Error("dataキーが存在しません");
+        }
+
+        // faces をコピー
+        targetJson.data.faces = sourceJson.data.faces;
+
+        const result = JSON.stringify(targetJson);
+
+        // // 画面表示
+        // document.getElementById("result").textContent = result;
+
+        // クリップボードへコピー
+        await navigator.clipboard.writeText(result);
+
+        alert("結果をクリップボードにコピーしました");
+      } catch (e) {
+        document.getElementById("result").textContent =
+          "エラー: " + e.message;
+      }
+    }
+  </script>
+</body>
+</html>
